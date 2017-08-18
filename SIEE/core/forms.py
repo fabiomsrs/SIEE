@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from core.models import Empresa, Vaga, Ifpi, TipoVaga
 
 User = get_user_model()
 
@@ -29,4 +30,27 @@ class RegisterUser(forms.ModelForm):
     class Meta:
         model = User
         # abstract = True
-        fields = ['username','email','nome']
+        fields = ['username','email','nome', 'ifpi']
+
+class RegisterCompanyForm(forms.ModelForm):
+
+    class Meta:
+        model = Empresa
+        fields = '__all__'
+
+class RegisterVacancyForm(forms.ModelForm):
+
+    tipo_vaga = forms.TypedChoiceField(choices=TipoVaga.choices(), coerce=str, required=False)
+    data_inicio = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+
+    class Meta:
+        model = Vaga
+        fields = '__all__'
+
+
+class RegisterIfpiForm(forms.ModelForm):
+
+    class Meta:
+        model = Ifpi
+        exclude = ['cursos', 'nome']
+        fields = '__all__'

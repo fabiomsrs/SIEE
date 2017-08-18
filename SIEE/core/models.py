@@ -15,26 +15,37 @@ class TipoVaga(Enum):
     DEFAULT = 'default'
 
 class Ifpi(models.Model):
-    nome_ifpi = models.CharField(max_length=25)
-    curso = models.ManyToManyField('Curso', verbose_name='lista de cursos')
+    nome = models.CharField(max_length=255, null=False)
+    descricao_campus = models.CharField(max_length=255, null=False)
+    cursos = models.ManyToManyField('Curso', verbose_name='cursos_ifpi')
+    endereco = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome + ' / ' + self.descricao_campus
 
 class Curso(models.Model):
-    nome = models.CharField(max_length=25)
-    area = models.CharField(max_length=25)
+    nome = models.CharField(max_length=255, null=False)
+    area = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome
 
 class Empresa(models.Model):
-    nome = models.CharField(max_length=25)
-    descricao = models.CharField(max_length=25)
-    endereco = models.CharField(max_length=25)
-    email = models.CharField(max_length=25)
-    telefone = models.CharField(max_length=25)
+    nome = models.CharField(max_length=255)
+    descricao = models.CharField(max_length=255)
+    endereco = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    telefone = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome
 
 class Vaga(models.Model):
     curso_vaga = models.ForeignKey('Curso', related_name='curso_vaga')
     empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
-    quantidade = models.IntegerField()
-    tipo_vaga = EnumField(TipoVaga,max_length=25, default=TipoVaga.DEFAULT)
-    data_inicio = models.DateTimeField(auto_now_add=True, blank=True)
+    quantidade = models.IntegerField("Quantidade de Vagas", null=False)
+    tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.DEFAULT)
+    data_inicio = models.DateField("Data inicio", blank=True, null=False)
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -44,6 +55,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
                                               'invalid')])
     email = models.EmailField('E-mail', unique=True)
     nome = models.CharField('Nome', max_length=100, blank=False)
+    ifpi = models.ForeignKey('Ifpi', verbose_name="Instituição",related_name='ifpi_usuario', null=False)
 
     class Meta:
         verbose_name = 'Usuário'

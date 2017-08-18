@@ -30,3 +30,63 @@ def register_user(request):
 def institution_home(request):
     template_name = 'institution_home.html'
     return render(request, template_name)
+
+def register_company(request):
+    template_name = 'register_company.html'
+    if request.method == 'POST':
+        form_register_company = RegisterCompanyForm(request.POST)
+
+        if form_register_company.is_valid():
+            company = form_register_company.save(commit=False)
+            company.save()
+            form_register_company = RegisterCompanyForm()
+            return redirect(settings.REGISTER_COMPANY)
+    else:
+        form_register_company = RegisterCompanyForm()
+    context = {'form_register_company' : form_register_company}
+
+    return render(request, template_name, context)
+
+def list_companies(request):
+    template_name = 'list_companies.html'
+    context = {'empresas' : Empresa.objects.all()}
+    return render(request, template_name, context)
+
+def register_vacancy(request):
+    template_name = 'register_vacancy.html'
+    if request.method == 'POST':
+        form_register_vacancy = RegisterVacancyForm(request.POST)
+
+        if form_register_vacancy.is_valid():
+            vacancy = form_register_vacancy.save(commit=False)
+            vacancy.save()
+            form_register_vacancy = RegisterVacancyForm()
+
+    else:
+        form_register_vacancy = RegisterVacancyForm()
+
+    context = {'form_register_vacancy' : form_register_vacancy}
+    return render(request, template_name, context)
+
+
+def register_ifpi(request):
+    template_name = 'register_ifpi.html'
+    if request.method == 'POST':
+        form_register_ifpi = RegisterIfpiForm(request.POST)
+
+        if form_register_ifpi.is_valid():
+            ifpi = form_register_ifpi.save(commit=False)
+            ifpi.nome = 'IFPI - INTITUTO FEDERAL DO PIAUI'
+            ifpi.save()
+            form_register_ifpi = RegisterIfpiForm()
+            return redirect(settings.REGISTER_IFPI)
+    else:
+        form_register_ifpi = RegisterIfpiForm()
+    context = {'form_register_ifpi' : form_register_ifpi}
+
+    return render(request, template_name, context)
+
+def list_vacancies(request):
+    template_name = 'list_vacancies.html'
+    context = {'vagas' : Vaga.objects.all()}
+    return render(request, template_name, context)

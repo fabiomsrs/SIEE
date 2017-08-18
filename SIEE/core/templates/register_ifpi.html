@@ -1,0 +1,17 @@
+{%extends "base_index.html"%}
+
+{%block base_home%}
+<div class="card">
+    <div class="card-content">
+        <form class="form-horizontal" method="POST">
+            {% csrf_token %}
+            <h5>Registre-se antes de usar</h5><br>
+            <fieldset>
+                {{ form_register_ifpi }}
+                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+            </fieldset>
+            <br>
+        </form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,18 @@
+{% extends "base_institution.html" %}
+{% block base_institution %}
+
+    <div class="container" align="center">
+    <form class="form-horizontal" method="POST">
+        {% csrf_token %}
+        <div class="container" align="center">
+            <h5>Registrar Empresas</h5>
+            <fieldset>
+                {{ form_register_company }}
+                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+            </fieldset>
+        </div>
+        <br>
+    </form>
+</div>
+
+{% endblock %}

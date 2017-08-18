@@ -14,6 +14,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
         <ul class="right hide-on-med-and-down">
             <li>Bem Vindo, {{user.nome.title}} &nbsp;&nbsp;</li>
+            <li><a href="{% url 'institution_home' %}">Pagina Inicial</a></li>
             <li><a href="{% url 'logout_usuario' %}">Sair</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -65,5 +66,17 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{% static 'js/materialize.js' %}"></script>
 <script src="{% static  'js/init.js' %}"></script>
+<script>
+    $().ready(function() {
+        $('select').material_select();
+    });
+    $('.datepicker').pickadate({
+        selectMonths: false, // Creates a dropdown to control month
+        selectYears: 70,
+        min: [1917, 01, 01],
+        max: false,
+        format: 'yyyy-mm-dd'
+    });
+</script>
 </body>
 </html>
