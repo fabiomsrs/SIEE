@@ -3,21 +3,30 @@
 
 <div class="container">
     <div class="row">
-        <div class="col m6">
+        <div class="col m8">
             <h3>Area da Instituição</h3>
             <p>Para se registrar no sistema é preciso que a Instituição deve estar cadastrada. </p>
         </div>
-        <div class="col m6">
-            <h3 class="center-align">Login</h3>
-            <div class="row">
-                <form method="POST" name="register" class="register-form">
-                    {% csrf_token %}
-                    {{ form }}
-                    <button type="submit" id='submit' class="btn-large waves-effect waves-light teal orange">Login</button><br><br>
-                    <h9>Ainda não é cadastrado <strong><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h9>
-                </form>
+
+        <br><br>
+        <div class="col m4">
+            <div class="card">
+                <div class="card-content">
+                    <h5 class="center-align">Login</h5>
+                    <br>
+                    <div class="row">
+                        <form method="POST" name="register" class="register-form">
+                            {% csrf_token %}
+                            {{ form }}
+                            <button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>
+                            <h10><strong><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </div>
 </div>
 

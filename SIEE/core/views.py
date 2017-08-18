@@ -61,6 +61,7 @@ def register_vacancy(request):
             vacancy = form_register_vacancy.save(commit=False)
             vacancy.save()
             form_register_vacancy = RegisterVacancyForm()
+            return redirect(settings.REGISTER_VAGA)
 
     else:
         form_register_vacancy = RegisterVacancyForm()
@@ -75,4 +76,5 @@ def list_vacancies(request):
 
 def student_area(request):
     template_name = 'student_area.html'
-    return render(request, template_name)
+    context = {'vagas' : Vaga.objects.all()}
+    return render(request, template_name, context)
