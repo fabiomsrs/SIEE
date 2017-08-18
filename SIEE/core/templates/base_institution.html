@@ -26,14 +26,14 @@
         <a href="#!name"><span class="white-text name">Bem Vindo, {{user.nome.title}}</span></a>
         <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
     </div></li>
-    <li><a href="{% url 'institution_home' %}">Pagina Inicial</a></li>
+    <li><a href="{% url 'institution_home' %}"><i class="material-icons">home</i>Pagina Inicial</a></li>
     <ul class="collapsible collapsible-accordion">
         <li>
             <a class="collapsible-header">Vaga<i class="material-icons">arrow_drop_down</i></a>
             <div class="collapsible-body">
                 <ul>
-                    <li><a href="{% url 'register_vacancy' %}">Divulgue Vagas</a></li>
-                    <li><a href="{% url 'list_vacancies' %}">Divulgadas recentemente</a></li>
+                    <li><a href="{% url 'register_vacancy' %}"><i class="material-icons">library_add</i>Divulgue Vagas</a></li>
+                    <li><a href="{% url 'list_vacancies' %}"><i class="material-icons">assignment</i>Divulgadas recentemente</a></li>
                 </ul>
             </div>
         </li>
@@ -43,13 +43,25 @@
             <a class="collapsible-header">Empresas<i class="material-icons">arrow_drop_down</i></a>
             <div class="collapsible-body">
                 <ul>
-                    <li><a href="{% url 'register_company' %}">Registrar Empresas</a></li>
-                    <li><a href="{% url 'list_companies' %}">Listar Empresas</a></li>
+                    <li><a href="{% url 'register_company' %}"><i class="material-icons">domain</i>Registrar Empresas</a></li>
+                    <li><a href="{% url 'list_companies' %}"><i class="material-icons">description</i>Listar Empresas</a></li>
                 </ul>
             </div>
         </li>
     </ul>
-    <li><a class="waves-effect" href="{% url 'logout_usuario' %}">Encerrar Sessão</a></li>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header">Cursos<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="#"><i class="material-icons">rate_review</i>Adicionar Cursos</a></li>
+                    <li><a href="#"><i class="material-icons">chrome_reader_mode</i>Cursos Adicionados</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <li><a href="#"><i class="material-icons">event_note</i>Registro de Alunos</a></li>
+    <li><a class="waves-effect" href="{% url 'logout_usuario' %}"><i class="material-icons">input</i>Encerrar Sessão</a></li>
 </ul>
 
 {% block base_institution %}
