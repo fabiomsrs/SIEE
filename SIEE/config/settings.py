@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTH_USER_MODEL = 'core.Usuario'
+
 INSTALLED_APPS = [
     'core',
     'django.contrib.admin',
@@ -108,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -123,3 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+REGISTER_USER = '/institution_area/'
+LOGIN_REDIRECT_URL = '/institution_home/'
+LOGOUT_URL = '/logout/'
+REGISTER_IFPI = '/'
+REGISTER_COMPANY = '/list_companies/'

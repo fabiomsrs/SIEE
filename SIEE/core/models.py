@@ -1,65 +1,90 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin, UserManager
+from django.core import validators
+import re
 from django.db import models
 from enumfields import EnumField
 from enumfields import Enum
+
 # Create your models here.
 
 class TipoVaga(Enum):
-	EMPREGO = 'emprego'
-	JOVEM_APRENDIZ = 'jovem aprendiz'
-	ESTAGIO = 'estagio'
-	DEFAULT = 'DEFAULT'
+    EMPREGO = 'emprego'
+    JOVEM_APRENDIZ = 'jovem aprendiz'
+    ESTAGIO = 'estagio'
+    DEFAULT = 'default'
 
-class Ifpi(models.Model):
-	nome_ifpi = models.CharField(max_length=25)
-	curso = models.ManyToManyField('Curso', verbose_name='lista de cursos')
-	
-	def __str__(self):
-		return nome_ifpi
+class TurnoVaga(Enum):
+    NOITE = 'noite'
+    DIA = 'dia'
+    TARDE = 'tarde'
+
+# class Ifpi(models.Model):
+#     nome = models.CharField(max_length=255, null=False)
+#     descricao_campus = models.CharField(max_length=255, null=False)
+#     cursos = models.ManyToManyField('Curso', verbose_name='cursos_ifpi')
+#     endereco = models.CharField(max_length=255)
+#
+#     def __str__(self):
+#         return self.nome + ' / ' + self.descricao_campus
 
 class Curso(models.Model):
-	nome_curso = models.CharField(max_length=25)
-	area_curso = models.CharField(max_length=25)
-	oferta_de_vaga = models.ManyToManyField('OfertaDeVaga', verbose_name='oferta de vagas')
-	
-	def __str__(self):
-		return nome_curso
+    nome = models.CharField(max_length=255, null=False)
+    area = models.CharField(max_length=255)
+    turno_aulas = models.CharField(max_length=255)
+    cordenador_curso= models.CharField(max_length=255)
 
-class Responsavel(models.Model):
-	nome_responsavel = models.CharField(max_length=45)
-
-class Vaga(models.Model):
-	responsavel = models.ForeignKey('Responsavel', related_name='vagas_responsaveis')
-	oferta_de_vaga = models.ForeignKey('OfertaDeVaga', on_delete=models.CASCADE)
-
-class OfertaDeVaga(models.Model):
-	tipo_vaga = EnumField(TipoVaga,max_length=25, default=TipoVaga.DEFAULT)
-	aluno = models.ManyToManyField('Aluno', through='CartaDeEncaminhamento')
-
-class CartaDeEncaminhamento(models.Model):
-	oferta_de_vaga = models.ForeignKey('OfertaDeVaga')
-	aluno = models.ForeignKey('Aluno')
-
-class Aluno(models.Model):
-	matricula = models.CharField(max_length=10) #chave candidata
-	nome_aluno = models.CharField(max_length=45)
-
-class TermoDeCompromisso(models.Model):
-	vaga = models.ForeignKey('Vaga',related_name='minhas_vagas')
-	regras_do_compromisso = models.CharField(max_length=250)
-	periodo = models.OneToOneField('Periodo')
-	local_atuacao = models.ForeignKey('Empresa', related_name='meus_termos_de_compromisso')
-	remuneracao = models.FloatField()
-	apolice_de_seguro = models.IntegerField()
-
-class Periodo(models.Model):
-	data_inicio = models.DateTimeField(auto_now_add=True, blank=True)
-	data_final = models.DateTimeField(blank=True)
+    def __str__(self):
+        return self.nome
 
 class Empresa(models.Model):
-	nome_empresa = models.CharField(max_length=25)
+    nome = models.CharField(max_length=255)
+    descricao = models.CharField(max_length=255)
+    endereco = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    telefone = models.CharField(max_length=255)
 
-class TermoConvenho(models.Model):
-	regras_do_convenho = models.CharField(max_length=250)
+    def __str__(self):
+        return self.nome
+
+class Vaga(models.Model):
+    curso_vaga = models.ForeignKey('Curso', related_name='curso_vaga')
+    descricao = models.CharField('Descricao', max_length=100, blank=False)
+    empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
+    quantidade = models.IntegerField("Quantidade de Vagas", null=False)
+    tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.DEFAULT)
+    data_inicio = models.DateField("Data inicio", blank=True, null=False)
+    valor = models.DecimalField("Valor", max_digits=15, decimal_places=2, default=0)
+    turno = EnumField(TurnoVaga, max_length=255, default=TurnoVaga.TARDE)
+
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+
+    username = models.CharField('Nome do Usuário', max_length=30, unique=True, validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
+                                              'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
+                                              'invalid')])
+    email = models.EmailField('E-mail', unique=True)
+    nome = models.CharField('Nome', max_length=100, blank=False)
+
+    class Meta:
+        verbose_name = 'Usuário'
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    object = UserManager()
+
+class Aluno(models.Model):
+    username = models.CharField('Nome do Usuário', max_length=30, unique=True,
+                                validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
+                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
+                                                                      'invalid')])
+    nome = models.CharField("Nome", max_length=255, null=False)
+    cpf = models.IntegerField("CPF", max_length=11, null=False)
+    matricula = models.CharField("Matricula",max_length=255, null=False)
+    endereco = models.CharField("Endereço" ,max_length=255, null=False)
+    curso = models.ForeignKey('Curso', related_name='curso_aluno')
+    data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
 
 #TODO SIEE class and Ficha de supervisão
 

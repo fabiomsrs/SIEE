@@ -1,27 +1,7 @@
-{% load staticfiles %}
+{% extends "base_index.html" %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{% static 'css/mobile.css' %}" type="text/css" rel="stylesheet" media="(max-width: 480px)")/>
-    <title>SIEE - Encontre Estagios</title>
-</head>
-<body>
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
+{% block base_home %}
 
-        <ul id="nav-mobile" class="side-nav">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
@@ -29,11 +9,13 @@
         <div class="row center">
             <h5 class="header col s12 light">Projeto realizado pela empresa JacaSoftware </h5>
         </div>
-        <div class="row center">
-            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Faça Parte dessa Equipe</a>
-        </div>
-        <br><br>
 
+        <div class="row center">
+            <div class="col s12">
+                <div class="col s6"><a href="{% url 'student_area' %}" class="btn-large waves-effect waves-light orange">&nbsp;&nbsp;&nbsp;Area do Aluno&nbsp;&nbsp;&nbsp;</a></div>
+                <div class="col s6"><a href="{% url 'login' %}" class="btn-large waves-effect waves-light orange">Area da Instituição</a></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -46,7 +28,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                    <h5 class="center">Buscas mais rapidas por estagio</h5>
+                    <h5 class="center">Buscas mais rapidas por estágio</h5>
 
                     <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
                 </div>
@@ -64,7 +46,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                    <h5 class="center">Uma maneira facil e rapida</h5>
+                    <h5 class="center">Uma maneira fácil e rapida</h5>
 
                     <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
                 </div>
@@ -75,47 +57,4 @@
     <br><br>
 </div>
 
-<footer class="page-footer orange">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Quem somos</h5>
-                <p class="grey-text text-lighten-4">Projeto desenvolvido para automatizar o processo de divulgação de estagios, como o intuito de passar na materia de OSM.</p>
-
-
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-        </div>
-    </div>
-</footer>
-
-
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-
-</body>
-</html>
+{% endblock %}
