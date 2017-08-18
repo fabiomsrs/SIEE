@@ -1,0 +1,20 @@
+{%extends "base_login.html"%}
+
+{%block base %}
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            <form class="form-horizontal" method="POST">
+                <h5>Registre-se antes de usar</h5><br>
+                <fieldset>
+                    {% csrf_token %}
+                    {{ form_register_student }}
+                    <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+                </fieldset>
+                <br>
+            </form>
+
+        </div>
+    </div>
+</div>
+{%endblock%}

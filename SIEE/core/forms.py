@@ -73,3 +73,4 @@ class RegisterStudentForm(forms.ModelForm):
 
         model = Aluno
         fields = '__all__'
+

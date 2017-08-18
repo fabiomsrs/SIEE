@@ -27,6 +27,20 @@ def register_user(request):
     context = {'form_register_user': form_register_user}
     return render(request, template_name, context)
 
+def register_student(request):
+    template_name = 'register_student.html'
+    if request.method == 'POST':
+        form_register_student = RegisterStudentForm(request.POST)
+
+        if form_register_student.is_valid():
+            student = form_register_student.save(commit=False)
+            student.save()
+            return redirect(settings.REGISTER_STUDENT)
+    else:
+        form_register_student = RegisterStudentForm()
+    context = {'form_register_student' : form_register_student}
+    return render(request, template_name, context)
+
 def institution_home(request):
     template_name = 'institution_home.html'
     return render(request, template_name)
@@ -74,7 +88,7 @@ def list_vacancies(request):
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
 
-def student_area(request):
-    template_name = 'student_area.html'
-    context = {'vagas' : Vaga.objects.all()}
-    return render(request, template_name, context)
+# def student_area(request):
+#     template_name = 'student_area.html'
+#     context = {'vagas' : Vaga.objects.all()}
+#     return render(request, template_name, context)
