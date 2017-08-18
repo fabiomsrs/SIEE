@@ -32,7 +32,7 @@ class Curso(models.Model):
     nome = models.CharField(max_length=255, null=False)
     area = models.CharField(max_length=255)
     turno_aulas = models.CharField(max_length=255)
-    cordenador_curso= models.CharField(max_length=255)
+    cordenador_curso = models.CharField(max_length=255)
 
     def __str__(self):
         return self.nome
@@ -48,14 +48,15 @@ class Empresa(models.Model):
         return self.nome
 
 class Vaga(models.Model):
-    curso_vaga = models.ForeignKey('Curso', related_name='curso_vaga')
+
     descricao = models.CharField('Descricao', max_length=100, blank=False)
-    empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
     quantidade = models.IntegerField("Quantidade de Vagas", null=False)
     tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.DEFAULT)
     data_inicio = models.DateField("Data inicio", blank=True, null=False)
     valor = models.DecimalField("Valor", max_digits=15, decimal_places=2, default=0)
     turno = EnumField(TurnoVaga, max_length=255, default=TurnoVaga.TARDE)
+    curso_vaga = models.ForeignKey('Curso', related_name='curso_vaga')
+    empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -80,7 +81,7 @@ class Aluno(models.Model):
                                                                       'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
                                                                       'invalid')])
     nome = models.CharField("Nome", max_length=255, null=False)
-    cpf = models.IntegerField("CPF", max_length=11, null=False)
+    cpf = models.IntegerField("CPF", null=False)
     matricula = models.CharField("Matricula",max_length=255, null=False)
     endereco = models.CharField("Endereço" ,max_length=255, null=False)
     curso = models.ForeignKey('Curso', related_name='curso_aluno')
