@@ -1,17 +1,23 @@
-{%extends "base_institution.html"%}
+{%extends "base_login.html"%}
 
 {%block base_institution%}
-<div class="card">
-    <div class="card-content">
-        <form class="form-horizontal" method="POST">
-            {% csrf_token %}
-            <h5>Registre-se antes de usar</h5><br>
-            <fieldset>
-                {{ form_register_user }}
-                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
-            </fieldset>
-            <br>
-        </form>
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+
+            <form class="form-horizontal" method="POST">
+                <h5>Registre-se antes de usar</h5><br>
+                <fieldset>
+
+                        {% csrf_token %}
+                        {{ form_register_user }}
+
+                    <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+                </fieldset>
+                <br>
+            </form>
+
+        </div>
     </div>
 </div>
 {%endblock%}

@@ -26,6 +26,8 @@ class Ifpi(models.Model):
 class Curso(models.Model):
     nome = models.CharField(max_length=255, null=False)
     area = models.CharField(max_length=255)
+    turno_aulas = models.CharField(max_length=255)
+    cordenador_curso= models.CharField(max_length=255)
 
     def __str__(self):
         return self.nome
@@ -64,6 +66,14 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email']
 
     object = UserManager()
+
+class Aluno(models.Model):
+    nome = models.CharField("Nome", max_length=255, null=False)
+    cpf = models.IntegerField("CPF", null=False)
+    matricula = models.CharField("Matricula",max_length=255, null=False)
+    endereco = models.CharField("Endereço" ,max_length=255, null=False)
+    curso = models.ForeignKey('Curso', related_name='curso_aluno')
+    data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
 
 #TODO SIEE class and Ficha de supervisão
 

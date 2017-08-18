@@ -30,7 +30,7 @@ class RegisterUser(forms.ModelForm):
     class Meta:
         model = User
         # abstract = True
-        fields = ['username','email','nome', 'ifpi']
+        fields = ['username','email','nome','ifpi']
 
 class RegisterCompanyForm(forms.ModelForm):
 
@@ -41,7 +41,7 @@ class RegisterCompanyForm(forms.ModelForm):
 class RegisterVacancyForm(forms.ModelForm):
 
     tipo_vaga = forms.TypedChoiceField(choices=TipoVaga.choices(), coerce=str, required=False)
-    data_inicio = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+    data_inicio = forms.DateField(label="Data Inicio",widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
 
     class Meta:
         model = Vaga
