@@ -14,14 +14,19 @@ class TipoVaga(Enum):
     ESTAGIO = 'estagio'
     DEFAULT = 'default'
 
-class Ifpi(models.Model):
-    nome = models.CharField(max_length=255, null=False)
-    descricao_campus = models.CharField(max_length=255, null=False)
-    cursos = models.ManyToManyField('Curso', verbose_name='cursos_ifpi')
-    endereco = models.CharField(max_length=255)
+class TurnoVaga(Enum):
+    NOITE = 'noite'
+    DIA = 'dia'
+    TARDE = 'tarde'
 
-    def __str__(self):
-        return self.nome + ' / ' + self.descricao_campus
+# class Ifpi(models.Model):
+#     nome = models.CharField(max_length=255, null=False)
+#     descricao_campus = models.CharField(max_length=255, null=False)
+#     cursos = models.ManyToManyField('Curso', verbose_name='cursos_ifpi')
+#     endereco = models.CharField(max_length=255)
+#
+#     def __str__(self):
+#         return self.nome + ' / ' + self.descricao_campus
 
 class Curso(models.Model):
     nome = models.CharField(max_length=255, null=False)
@@ -44,10 +49,13 @@ class Empresa(models.Model):
 
 class Vaga(models.Model):
     curso_vaga = models.ForeignKey('Curso', related_name='curso_vaga')
+    descricao = models.CharField('Descricao', max_length=100, blank=False)
     empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
     quantidade = models.IntegerField("Quantidade de Vagas", null=False)
     tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.DEFAULT)
     data_inicio = models.DateField("Data inicio", blank=True, null=False)
+    valor = models.DecimalField("Valor", max_digits=15, decimal_places=2, default=0)
+    turno = EnumField(TurnoVaga, max_length=255, default=TurnoVaga.TARDE)
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -57,7 +65,6 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
                                               'invalid')])
     email = models.EmailField('E-mail', unique=True)
     nome = models.CharField('Nome', max_length=100, blank=False)
-    ifpi = models.ForeignKey('Ifpi', verbose_name="Instituição",related_name='ifpi_usuario', null=False)
 
     class Meta:
         verbose_name = 'Usuário'
@@ -68,8 +75,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     object = UserManager()
 
 class Aluno(models.Model):
+    username = models.CharField('Nome do Usuário', max_length=30, unique=True,
+                                validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
+                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
+                                                                      'invalid')])
     nome = models.CharField("Nome", max_length=255, null=False)
-    cpf = models.IntegerField("CPF", null=False)
+    cpf = models.IntegerField("CPF", max_length=11, null=False)
     matricula = models.CharField("Matricula",max_length=255, null=False)
     endereco = models.CharField("Endereço" ,max_length=255, null=False)
     curso = models.ForeignKey('Curso', related_name='curso_aluno')

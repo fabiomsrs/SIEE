@@ -68,25 +68,11 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
-
-def register_ifpi(request):
-    template_name = 'register_ifpi.html'
-    if request.method == 'POST':
-        form_register_ifpi = RegisterIfpiForm(request.POST)
-
-        if form_register_ifpi.is_valid():
-            ifpi = form_register_ifpi.save(commit=False)
-            ifpi.nome = 'IFPI - INTITUTO FEDERAL DO PIAUI'
-            ifpi.save()
-            form_register_ifpi = RegisterIfpiForm()
-            return redirect(settings.REGISTER_IFPI)
-    else:
-        form_register_ifpi = RegisterIfpiForm()
-    context = {'form_register_ifpi' : form_register_ifpi}
-
-    return render(request, template_name, context)
-
 def list_vacancies(request):
     template_name = 'list_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
+
+def student_area(request):
+    template_name = 'student_area.html'
+    return render(request, template_name)

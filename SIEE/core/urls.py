@@ -12,8 +12,8 @@ urlpatterns = [
     url('^list_vacancies/$', views.list_vacancies, name="list_vacancies"),
     url('^register_company/$', views.register_company, name="register_company"),
     url('^register_vacancy/$', views.register_vacancy, name="register_vacancy"),
-    url('^register_ifpi/$', views.register_ifpi, name="register_ifpi"),
 
+    url('^student_area/$', views.student_area, name='student_area'),
 
     url('^institution_area/$', login, {'template_name': 'institution_area.html'}, name='login'),
     url('^logout/', logout_then_login, {'login_url' : 'login'}, name='logout_usuario')
