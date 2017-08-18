@@ -1,0 +1,26 @@
+{% extends "base_login.html" %}
+{% block base_institution %}
+
+<div class="container">
+    <div class="row">
+        <div class="col m6">
+            <h3>Area da Instituição</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
+                modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+        </div>
+        <div class="col m6">
+            <h3 class="center-align">Login</h3>
+            <div class="row">
+                <form method="POST" name="register" class="register-form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" id='submit' class="btn-large waves-effect waves-light teal orange">Login</button><br><br>
+                    <h9>Ainda não é cadastrado <strong><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h9>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
