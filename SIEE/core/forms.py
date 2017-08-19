@@ -73,5 +73,5 @@ class RegisterStudentForm(forms.ModelForm):
 
     class Meta:
         model = Aluno
-        fields = ['username', 'email', 'nome', 'curso_aluno']
+        fields = ['username', 'email', 'nome','matricula', 'curso_aluno']
 

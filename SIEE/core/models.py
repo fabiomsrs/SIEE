@@ -70,7 +70,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     object = UserManager()
 
-class Aluno(models.Model):
+class Aluno(AbstractBaseUser):
     username = models.CharField('Nome do Usuário', max_length=30, unique=True,
                                 validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                       'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
@@ -80,6 +80,11 @@ class Aluno(models.Model):
     matricula = models.CharField("Matricula",max_length=255, null=False)
     curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
 
+    class Meta:
+        verbose_name = 'Aluno'
+
+    USERNAME_FIELD = 'matricula'
+    REQUIRED_FIELDS = ['email']
 
 class CurriculoAluno(models.Model):
     aluno = models.ForeignKey('Aluno', related_name='aluno_curriculo', null=False)
