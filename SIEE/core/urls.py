@@ -20,6 +20,6 @@ urlpatterns = [
     url('^student_area/$', login, {'template_name': 'student_area.html'}, name='login_student'),
     url('^institution_area/$', login, {'template_name': 'institution_area.html'}, name='login_institution'),
 
-    url('^logout/', logout_then_login, {'login_url' : 'login'}, name='logout_usuario')
+    url('^logout/', logout_then_login, {'login_url' : 'login_institution'}, name='logout_usuario')
 ]
 

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import CheckboxSelectMultiple
+
 from core.models import Empresa, Vaga, TipoVaga, Aluno
 
 User = get_user_model()
@@ -70,7 +72,6 @@ class RegisterStudentForm(forms.ModelForm):
         return student
 
     class Meta:
-
         model = Aluno
-        fields = '__all__'
+        fields = ['username', 'email', 'nome', 'curso_aluno']
 

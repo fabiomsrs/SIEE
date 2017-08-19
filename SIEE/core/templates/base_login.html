@@ -69,5 +69,18 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{% static 'js/materialize.js' %}"></script>
 <script src="{% static  'js/init.js' %}"></script>
+<script>
+    $().ready(function() {
+        $('select').material_select();
+    });
+    $('.datepicker').pickadate({
+        selectMonths: false, // Creates a dropdown to control month
+        selectYears: 70,
+        min: [1917, 01, 01],
+        max: false,
+        format: 'yyyy-mm-dd'
+    });
+</script>
+
 </body>
 </html>
