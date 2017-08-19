@@ -12,27 +12,22 @@ class TipoVaga(Enum):
     EMPREGO = 'emprego'
     JOVEM_APRENDIZ = 'jovem aprendiz'
     ESTAGIO = 'estagio'
-    DEFAULT = 'default'
 
 class TurnoVaga(Enum):
     NOITE = 'noite'
     DIA = 'dia'
     TARDE = 'tarde'
 
-# class Ifpi(models.Model):
-#     nome = models.CharField(max_length=255, null=False)
-#     descricao_campus = models.CharField(max_length=255, null=False)
-#     cursos = models.ManyToManyField('Curso', verbose_name='cursos_ifpi')
-#     endereco = models.CharField(max_length=255)
-#
-#     def __str__(self):
-#         return self.nome + ' / ' + self.descricao_campus
+class EstadoCivil(Enum):
+    CASADO = 'casado'
+    SOLTEIRO = 'solteiro'
+
 
 class Curso(models.Model):
-    nome = models.CharField(max_length=255, null=False)
-    area = models.CharField(max_length=255)
-    turno_aulas = models.CharField(max_length=255)
-    cordenador_curso = models.CharField(max_length=255)
+    nome = models.CharField("Nome Curso",max_length=255, null=False)
+    area = models.CharField("Area de Atuação",max_length=255)
+    turno_aulas = models.CharField("Turno",max_length=255)
+    cordenador_curso = models.CharField("Cordenador",max_length=255)
 
     def __str__(self):
         return self.nome
@@ -51,7 +46,7 @@ class Vaga(models.Model):
 
     descricao = models.CharField('Descricao', max_length=100, blank=False)
     quantidade = models.IntegerField("Quantidade de Vagas", null=False)
-    tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.DEFAULT)
+    tipo_vaga = EnumField(TipoVaga, max_length=255, default=TipoVaga.ESTAGIO)
     data_inicio = models.DateField("Data inicio", blank=True, null=False)
     valor = models.DecimalField("Valor", max_digits=15, decimal_places=2, default=0)
     turno = EnumField(TurnoVaga, max_length=255, default=TurnoVaga.TARDE)
@@ -62,8 +57,8 @@ class Vaga(models.Model):
 class Usuario(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField('Nome do Usuário', max_length=30, unique=True, validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
-                                              'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
-                                              'invalid')])
+                                                                                                                     'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
+                                                                                                                     'invalid')])
     email = models.EmailField('E-mail', unique=True)
     nome = models.CharField('Nome', max_length=100, blank=False)
 
@@ -75,17 +70,33 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     object = UserManager()
 
-class Aluno(models.Model):
+class Aluno(AbstractBaseUser):
     username = models.CharField('Nome do Usuário', max_length=30, unique=True,
                                 validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                       'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
                                                                       'invalid')])
-    nome = models.CharField("Nome", max_length=255, null=False)
-    cpf = models.IntegerField("CPF", null=False)
+    nome = models.CharField("Nome Completo", max_length=255, null=False)
+    email = models.CharField("Email", max_length=255, null=False)
     matricula = models.CharField("Matricula",max_length=255, null=False)
-    endereco = models.CharField("Endereço" ,max_length=255, null=False)
-    curso = models.ForeignKey('Curso', related_name='curso_aluno')
+    curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
+
+    class Meta:
+        verbose_name = 'Aluno'
+
+    USERNAME_FIELD = 'matricula'
+    REQUIRED_FIELDS = ['email']
+
+class CurriculoAluno(models.Model):
+    aluno = models.ForeignKey('Aluno', related_name='aluno_curriculo', null=False)
+    rg = models.IntegerField("RG", null=False)
+    cpf = models.IntegerField("CPF", null=False)
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
+    endereco = models.CharField("Endereço", max_length=255, null=False)
+    estado_civil = EnumField(EstadoCivil, max_length=255, default=EstadoCivil.SOLTEIRO)
+    experiencia_profissional = models.CharField("Experiencia Profissional", max_length=255, null=True)
+    cursos_extras = models.CharField("Cursos Extras", max_length=255, null=True)
+    formacao_academica = models.CharField("Formação Academica", max_length=255, null=True)
+    participacao_eventos = models.CharField("Participação em Eventos", max_length=255, null=True)
 
 #TODO SIEE class and Ficha de supervisão
 

@@ -1,0 +1,23 @@
+{% extends "base_login.html" %}
+{% block base %}
+<div class="container">
+    <div class="row">
+        {% for vaga in vagas %}
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Empresa: {{vaga.empresa_vaga}}</span>
+                    <p>Descrição: {{vaga.descricao}}</p>
+                    <p>Valor da Bolsa: {{vaga.valor}}</p>
+                    <p>Numero de Vagas: {{vaga.quantidade}}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Detalhar</a>
+                    <a href="#">Preencher Formularios</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
