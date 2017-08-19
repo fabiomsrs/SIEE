@@ -14,6 +14,8 @@ urlpatterns = [
     url('^register_vacancy/$', views.register_vacancy, name="register_vacancy"),
     url('^register_student/$', views.register_student, name="register_student"),
     url('^student_home/$', views.student_home, name="student_home"),
+    url('^my_curriculum/$', views.my_curriculum, name="my_curriculum"),
+
 
     url('^student_area/$', views.student_area, name="login_student"),
 

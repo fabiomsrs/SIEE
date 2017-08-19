@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import CheckboxSelectMultiple
 
-from core.models import Empresa, Vaga, TipoVaga, Aluno
+from core.models import Empresa, Vaga, TipoVaga, Aluno, CurriculoAluno
 
 User = get_user_model()
 
@@ -74,4 +74,24 @@ class RegisterStudentForm(forms.ModelForm):
     class Meta:
         model = Aluno
         fields = ['username', 'email', 'nome','matricula', 'curso_aluno']
+
+class RegisterMyCurriculum(forms.ModelForm):
+
+    experiencia_profissional = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),required=False)
+    cursos_extras = forms.CharField(max_length=255,
+                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
+                                               required=False)
+    formacao_academica = forms.CharField(max_length=255,
+                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
+                                               required=False)
+    participacao_eventos = forms.CharField(max_length=255,
+                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
+                                               required=False)
+
+    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+
+    class Meta:
+        model = CurriculoAluno
+        exclude = ['aluno']
+        fields = '__all__'
 

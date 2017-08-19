@@ -88,6 +88,24 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
+def my_curriculum(request):
+    template_name = 'my_curriculum.html'
+    aluno = Aluno.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        form_register_my_curriculum = RegisterMyCurriculum(request.POST)
+
+        if form_register_my_curriculum.is_valid():
+            curriculum = form_register_my_curriculum.save(commit=False)
+            curriculum.aluno = aluno
+            curriculum.save()
+            return redirect(settings.REGISTER_CURRICULUM)
+    else:
+        form_register_my_curriculum = RegisterMyCurriculum()
+
+    context = {'form_register_my_curriculum' : form_register_my_curriculum}
+    return render(request, template_name, context)
+
+
 def list_vacancies(request):
     template_name = 'list_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
@@ -129,3 +147,4 @@ def student_area(request):
 	else:
 		form = AuthenticationForm()
 		return render(request, "student_area.html", {'form':form})
+
