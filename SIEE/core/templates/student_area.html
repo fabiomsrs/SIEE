@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col m8">
-            <h3>Area da Instituição</h3>
+            <h3>Area do Usuario</h3>
             <p>Para se registrar no sistema é preciso que a Instituição deve estar cadastrada. </p>
         </div>
 
@@ -15,11 +15,16 @@
                     <h5 class="center-align">Login</h5>
                     <br>
                     <div class="row">
-                        <form method="POST" name="register" class="register-form">
+                        <!--<form method="POST" name="register" class="register-form">-->
+                        <!--{% csrf_token %}-->
+                        <!--{{ form }}-->
+                        <!--<button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>-->
+                        <!--<h10><strong><a href="{% url 'register_student' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>-->
+                        <!--</form>-->
+                        <form method="POST">
                             {% csrf_token %}
-                            {{ form }}
-                            <button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>
-                            <h10><strong><a href="{% url 'register_student' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>
+                            {{ form.as_p }}
+                            <input type='submit' value='Logar' />
                         </form>
                     </div>
                 </div>

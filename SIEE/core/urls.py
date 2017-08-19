@@ -13,13 +13,19 @@ urlpatterns = [
     url('^register_company/$', views.register_company, name="register_company"),
     url('^register_vacancy/$', views.register_vacancy, name="register_vacancy"),
     url('^register_student/$', views.register_student, name="register_student"),
+    url('^student_home/$', views.student_home, name="student_home"),
+
+    url('^student_area/$', views.student_area, name="login_student"),
+
+
 
 
     # url('^student_area/$', views.student_area, name='student_area'),
 
-    url('^student_area/$', login, {'template_name': 'student_area.html'}, name='login_student'),
+    # url('^student_area/$', login, {'template_name': 'student_area.html'}, name='login_student'),
     url('^institution_area/$', login, {'template_name': 'institution_area.html'}, name='login_institution'),
 
-    url('^logout/', logout_then_login, {'login_url' : 'login_institution'}, name='logout_usuario')
+    url('^logout/', logout_then_login, {'login_url' : 'index'}, name='logout_usuario'),
+    url('^logout/', logout_then_login, {'login_url' : 'login_student'}, name='logout_student') #so pra encher linguiça
 ]
 

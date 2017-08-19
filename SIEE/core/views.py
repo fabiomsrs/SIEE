@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, get_user_model, login
-from django.http import HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from config import settings
@@ -43,6 +44,10 @@ def register_student(request):
 
 def institution_home(request):
     template_name = 'institution_home.html'
+    return render(request, template_name)
+
+def student_home(request):
+    template_name = 'student_home.html'
     return render(request, template_name)
 
 def register_company(request):
@@ -92,3 +97,35 @@ def list_vacancies(request):
 #     template_name = 'student_area.html'
 #     context = {'vagas' : Vaga.objects.all()}
 #     return render(request, template_name, context)
+
+
+# def logar(request):
+#     if request.method == 'POST':
+#         print("entrou no metodo")
+#         form = AuthenticationForm(data=request.POST)  # Veja a documentacao desta funcao
+#         if form.is_valid():
+#             # se o formulario for valido significa que o Django conseguiu encontrar o usuario no banco de dados
+#             # agora, basta logar o usuario e ser feliz.
+#             login(request, form.get_user())
+#             return HttpResponseRedirect("/student_home/")  # redireciona o usuario logado para a pagina inicial
+#         else:
+#             return render(request, "student_area.html", {"form": form})
+#
+#     # se nenhuma informacao for passada, exibe a pagina de login com o formulario
+#     return render(request, "student_area.html", {"form": AuthenticationForm()})
+
+
+def student_area(request):
+	if request.method == "POST":#TODO
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect(settings.REGISTER_STUDENT)
+		else:
+			return HttpResponse("<h1>LOGIN ERROR</h1>")
+
+	else:
+		form = AuthenticationForm()
+		return render(request, "student_area.html", {'form':form})

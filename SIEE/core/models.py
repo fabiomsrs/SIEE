@@ -83,7 +83,7 @@ class Aluno(AbstractBaseUser):
     class Meta:
         verbose_name = 'Aluno'
 
-    USERNAME_FIELD = 'matricula'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
 class CurriculoAluno(models.Model):
