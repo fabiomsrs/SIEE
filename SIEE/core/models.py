@@ -54,7 +54,7 @@ class Vaga(models.Model):
     empresa_vaga = models.ForeignKey('Empresa', related_name='empresa_vaga')
 
 
-class Usuario(AbstractBaseUser, PermissionsMixin):
+class Usuario(AbstractBaseUser):
 
     username = models.CharField('Nome do Usuário', max_length=30, unique=True, validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
@@ -79,6 +79,7 @@ class Aluno(AbstractBaseUser):
     email = models.CharField("Email", max_length=255, null=False)
     matricula = models.CharField("Matricula",max_length=255, null=False)
     curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
+    curriculo = models.ForeignKey('CurriculoAluno', related_name='curriculo_aluno', null=True)
 
     class Meta:
         verbose_name = 'Aluno'
@@ -86,8 +87,10 @@ class Aluno(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
+    object = UserManager()
+
 class CurriculoAluno(models.Model):
-    aluno = models.ForeignKey('Aluno', related_name='aluno_curriculo', null=False)
+
     rg = models.IntegerField("RG", null=False)
     cpf = models.IntegerField("CPF", null=False)
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)

@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from config import settings
 from core.forms import *
 
+User = get_user_model()
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -34,11 +36,19 @@ def register_student(request):
         form_register_student = RegisterStudentForm(request.POST)
 
         if form_register_student.is_valid():
-            student = form_register_student.save(commit=False)
-            student.save()
+            user = form_register_student.save()
+            user = authenticate(username=user.username, password=form_register_student.cleaned_data['senha1'])
             return redirect(settings.REGISTER_STUDENT)
+
+        #
+        # if form_register_student.is_valid():
+        #     student = form_register_student.save(commit=False)
+        #     student.save()
+        #     return redirect(settings.REGISTER_STUDENT)
+
     else:
         form_register_student = RegisterStudentForm()
+
     context = {'form_register_student' : form_register_student}
     return render(request, template_name, context)
 
@@ -90,17 +100,17 @@ def register_vacancy(request):
 
 def my_curriculum(request):
     template_name = 'my_curriculum.html'
-    aluno = Aluno.objects.get(id=request.user.id)
+    aluno = Aluno.objects.all().filter(id=request.user.id)
     if request.method == 'POST':
         form_register_my_curriculum = RegisterMyCurriculum(request.POST)
 
         if form_register_my_curriculum.is_valid():
             curriculum = form_register_my_curriculum.save(commit=False)
-            curriculum.aluno = aluno
+            aluno.curriculum = curriculum
             curriculum.save()
             return redirect(settings.REGISTER_CURRICULUM)
     else:
-        form_register_my_curriculum = RegisterMyCurriculum()
+        form_register_my_curriculum = RegisterMyCurriculum(instance=request.user)
 
     context = {'form_register_my_curriculum' : form_register_my_curriculum}
     return render(request, template_name, context)
@@ -134,17 +144,17 @@ def list_vacancies(request):
 
 
 def student_area(request):
-	if request.method == "POST":#TODO
+	if request.method == "POST":
 		username = request.POST['username']
 		password = request.POST['password']
-		user = authenticate(username=username, password=password)
+		user = authenticate(username = username, password = password)
 		if user is not None:
 			login(request, user)
-			return redirect(settings.REGISTER_STUDENT)
+			return redirect(settings.LOGIN_STUDENT)
 		else:
 			return HttpResponse("<h1>LOGIN ERROR</h1>")
 
 	else:
 		form = AuthenticationForm()
-		return render(request, "student_area.html", {'form':form})
+	return render(request, "student_area.html", {'form' : form} )
 

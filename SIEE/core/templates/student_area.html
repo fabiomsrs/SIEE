@@ -19,12 +19,13 @@
                         <!--{% csrf_token %}-->
                         <!--{{ form }}-->
                         <!--<button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>-->
-                        <!--<h10><strong><a href="{% url 'register_student' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>-->
+
                         <!--</form>-->
-                        <form method="POST">
+                        <form method="POST" name="register" class="register-form">
                             {% csrf_token %}
-                            {{ form.as_p }}
-                            <input type='submit' class="btn" value='Logar'/>
+                            {{ form }}
+                            <button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>
+                            <h10><strong><a href="{% url 'register_student' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>
                         </form>
                     </div>
                 </div>
