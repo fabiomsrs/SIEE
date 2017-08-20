@@ -1,0 +1,97 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+    <title>SIEE - Encontre Estagios</title>
+</head>
+<body>
+<nav class=" light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li>Bem Vindo, {{user.nome.title}}</li>
+        </ul>
+    </div>
+</nav>
+<ul id="slide-out" class="side-nav">
+    <li><div class="userView">
+        <div class="background">
+            <img src="../static/img/fundo_eventos.jpg">
+        </div>
+        <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+        <a href="#!name"><span class="white-text name">Bem Vindo, {{user.nome.title}}</span></a>
+        <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
+    </div></li>
+    <li><a href="{% url 'student_home' %}"><i class="material-icons">home</i>Pagina Inicial</a></li>
+    <li><a href="#"><i class="material-icons">home</i>Meu Curriculo</a></li>
+    <li><a href="#"><i class="material-icons">home</i>Buscar Vagas</a></li>
+    <li><a class="waves-effect" href="{% url 'logout_usuario' %}"><i class="material-icons">input</i>Encerrar Sessão</a></li>
+</ul>
+
+{% block base_student %}
+
+{% endblock %}
+
+<div class="fixed-action-btn horizontal click-to-toggle">
+    <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large red"><i class="material-icons">menu</i></a>
+</div>
+
+<footer class="page-footer light-blue darken-4">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Quem somos</h5>
+                <p class="grey-text text-lighten-4">Projeto desenvolvido para automatizar o processo de divulgação de estagios, como o intuito de passar na materia de OSM.</p>
+
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Settings</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+<script src="{% static  'js/init.js' %}"></script>
+<script>
+    $().ready(function() {
+        $('select').material_select();
+    });
+    $('.datepicker').pickadate({
+        selectMonths: false, // Creates a dropdown to control month
+        selectYears: 70,
+        min: [1917, 01, 01],
+        max: false,
+        format: 'yyyy-mm-dd'
+    });
+</script>
+</body>
+</html>

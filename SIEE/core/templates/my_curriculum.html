@@ -1,6 +1,5 @@
-{%extends "base_login.html"%}
-
-{%block base %}
+{% extends "base_student.html" %}
+{% block base_student %}
 <div class="container">
     <div class="card">
         <div class="card-content">
@@ -8,7 +7,7 @@
                 <h5>Registre-se antes de usar</h5><br>
                 <fieldset>
                     {% csrf_token %}
-                    {{ form_register_student }}
+                    {{ form_register_my_curriculum }}
                     <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
                 </fieldset>
                 <br>
@@ -17,4 +16,4 @@
         </div>
     </div>
 </div>
-{%endblock%}
+{% endblock %}

@@ -1,9 +1,12 @@
 from django.contrib.auth import authenticate, get_user_model, login
-from django.http import HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from config import settings
 from core.forms import *
+
+User = get_user_model()
 
 # Create your views here.
 def index(request):
@@ -14,32 +17,33 @@ def index(request):
 
 def register_user(request):
     template_name = 'register_user.html'
-    if request.method == 'POST':
-        form_register_user = RegisterUser(request.POST)
+    # if request.method == 'POST':
+    #     form_register_user = RegisterUser(request.POST)
+    #
+    #     if form_register_user.is_valid():
+    #         user = form_register_user.save()
+    #         user = authenticate(username=user.username, password=form_register_user.cleaned_data['senha1'])
+    #         return redirect(settings.REGISTER_USER)
+    #     else:
+    #         return HttpResponse("<h1>CADASTRO ERROR</h1>")
+    #
+    # else:
+    #     form_register_user = RegisterUser()
 
+    if request.method == "POST":
+        form_register_user = RegisterUser(request.POST)
         if form_register_user.is_valid():
-            user = form_register_user.save()
-            user = authenticate(username=user.username, password=form_register_user.cleaned_data['senha1'])
+            usuario = form_register_user.save(commit=False)
+            usuario.save()
             return redirect(settings.REGISTER_USER)
+        else:
+            return HttpResponse("<h1>CADASTRO INVALIDO</h1>")
     else:
         form_register_user = RegisterUser()
-
-    context = {'form_register_user': form_register_user}
+        context = {'form_register_user': form_register_user}
     return render(request, template_name, context)
 
-def register_student(request):
-    template_name = 'register_student.html'
-    if request.method == 'POST':
-        form_register_student = RegisterStudentForm(request.POST)
 
-        if form_register_student.is_valid():
-            student = form_register_student.save(commit=False)
-            student.save()
-            return redirect(settings.REGISTER_STUDENT)
-    else:
-        form_register_student = RegisterStudentForm()
-    context = {'form_register_student' : form_register_student}
-    return render(request, template_name, context)
 
 def institution_home(request):
     template_name = 'institution_home.html'
@@ -83,12 +87,53 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
+def student_home(request):
+    template_name = 'student_home.html'
+    return render(request, template_name)
+
+def my_curriculum(request):
+    template_name = 'my_curriculum.html'
+    # aluno = Aluno.objects.all().filter(id=request.user.id)
+    if request.method == 'POST':
+        form_register_my_curriculum = RegisterMyCurriculum(request.POST)
+
+        if form_register_my_curriculum.is_valid():
+            curriculum = form_register_my_curriculum.save(commit=False)
+            # aluno.curriculum = curriculum
+            curriculum.save()
+            return redirect(settings.REGISTER_CURRICULUM)
+    else:
+        form_register_my_curriculum = RegisterMyCurriculum(instance=request.user)
+
+    context = {'form_register_my_curriculum' : form_register_my_curriculum}
+    return render(request, template_name, context)
+
+
 def list_vacancies(request):
     template_name = 'list_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
 
-# def student_area(request):
-#     template_name = 'student_area.html'
-#     context = {'vagas' : Vaga.objects.all()}
-#     return render(request, template_name, context)
+def institution_area(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+
+            if '1'in request.user.tipo_usuario:
+                print('ALUNO')
+                print(request.user.nome)
+                return redirect(settings.LOGIN_STUDENT)
+            if '2' in request.user.tipo_usuario:
+                print('ADMIN')
+                return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                print('nao encontrou nada')
+                return HttpResponse("<h1>LOGIN ERROR</h1>")
+        else:
+            return HttpResponse("<h1>LOGIN ERROR</h1>")
+    else:
+        form = AuthenticationForm()
+        return render(request, "institution_area.html", {'form' : form} )
