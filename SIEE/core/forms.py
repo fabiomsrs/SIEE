@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import CheckboxSelectMultiple
 
-from core.models import Empresa, Vaga, TipoVaga, CurriculoAluno, EstadoCivil, Curso
-
 User = get_user_model()
 
 class RegisterUser(forms.ModelForm):
@@ -33,47 +31,3 @@ class RegisterUser(forms.ModelForm):
         model = User
         # abstract = True
         fields = ['username','email','nome', 'tipo_usuario']
-
-class RegisterCompanyForm(forms.ModelForm):
-
-    class Meta:
-        model = Empresa
-        fields = '__all__'
-
-class RegisterVacancyForm(forms.ModelForm):
-
-
-    tipo_vaga = forms.TypedChoiceField(choices=TipoVaga.choices(), coerce=str, required=False)
-    data_inicio = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
-
-    class Meta:
-        model = Vaga
-        fields = '__all__'
-
-class RegisterMyCurriculum(forms.ModelForm):
-
-    experiencia_profissional = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),required=False)
-    cursos_extras = forms.CharField(max_length=255,
-                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
-                                               required=False)
-    formacao_academica = forms.CharField(max_length=255,
-                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
-                                               required=False)
-    participacao_eventos = forms.CharField(max_length=255,
-                                               widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
-                                               required=False)
-
-    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False),
-
-    estado_civil = forms.TypedChoiceField(choices=EstadoCivil.choices(), coerce=str, required=False)
-
-    class Meta:
-        model = CurriculoAluno
-        exclude = ['aluno']
-        fields = '__all__'
-
-class RegisterCourseForm(forms.ModelForm):
-
-    class Meta:
-        model = Curso
-        fields = '__all__'
