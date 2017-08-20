@@ -87,6 +87,23 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
+
+def register_course(request):
+    template_name = 'register_course.html'
+    if request.method == 'POST':
+        form_register_course = RegisterCourseForm(request.POST)
+
+        if form_register_course.is_valid():
+            course = form_register_course.save(commit=False)
+            course.save()
+            return redirect(settings.INSTITUTION_HOME)
+    else:
+        form_register_course = RegisterCourseForm(request.POST)
+
+    context = {'form_register_course' : form_register_course}
+    return render(request, template_name, context)
+
+
 def student_home(request):
     template_name = 'student_home.html'
     return render(request, template_name)
@@ -124,7 +141,6 @@ def institution_area(request):
 
             if '1'in request.user.tipo_usuario:
                 print('ALUNO')
-                print(request.user.nome)
                 return redirect(settings.LOGIN_STUDENT)
             if '2' in request.user.tipo_usuario:
                 print('ADMIN')
@@ -137,3 +153,4 @@ def institution_area(request):
     else:
         form = AuthenticationForm()
         return render(request, "institution_area.html", {'form' : form} )
+
