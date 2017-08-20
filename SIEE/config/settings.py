@@ -34,6 +34,8 @@ AUTH_USER_MODEL = 'core.Usuario'
 
 INSTALLED_APPS = [
     'core',
+    'vaga',
+    'aluno',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,10 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 REGISTER_USER = '/institution_area/'
-LOGIN_REDIRECT_URL = '/institution_home/'
 LOGOUT_URL = '/logout/'
-REGISTER_COMPANY = '/list_companies/'
-REGISTER_VAGA = '/list_vacancies/'
-LOGIN_STUDENT = '/student_home/'
-REGISTER_CURRICULUM = '/student_home/'
+LISTA_COMPANY = '/list_companies/'
+LISTA_VAGA = '/list_vacancies/'
+STUDENT_HOME = '/student_home/'
 INSTITUTION_HOME = '/institution_home/'
