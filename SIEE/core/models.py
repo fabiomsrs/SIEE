@@ -23,6 +23,10 @@ class EstadoCivil(Enum):
     SOLTEIRO = 'solteiro'
 
 
+class TipoUsuario(Enum):
+    ADMINISTRADOR = 'administrador'
+    ALUNO = 'aluno'
+
 class Curso(models.Model):
     nome = models.CharField("Nome Curso",max_length=255, null=False)
     area = models.CharField("Area de Atuação",max_length=255)
@@ -59,8 +63,9 @@ class Usuario(AbstractBaseUser):
     username = models.CharField('Nome do Usuário', max_length=30, unique=True, validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
                                                                                                                      'invalid')])
-    email = models.EmailField('E-mail', unique=True)
     nome = models.CharField('Nome', max_length=100, blank=False)
+    email = models.EmailField('E-mail', unique=True)
+    tipo_usuario = EnumField(TipoUsuario, max_length=255, default=TipoUsuario.ALUNO)
 
     class Meta:
         verbose_name = 'Usuário'
@@ -70,27 +75,12 @@ class Usuario(AbstractBaseUser):
 
     object = UserManager()
 
-class Aluno(AbstractBaseUser):
-    username = models.CharField('Nome do Usuário', max_length=30, unique=True,
-                                validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
-                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
-                                                                      'invalid')])
-    nome = models.CharField("Nome Completo", max_length=255, null=False)
-    email = models.CharField("Email", max_length=255, null=False)
-    matricula = models.CharField("Matricula",max_length=255, null=False)
-    curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
-    curriculo = models.ForeignKey('CurriculoAluno', related_name='curriculo_aluno', null=True)
-
-    class Meta:
-        verbose_name = 'Aluno'
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
-    object = UserManager()
 
 class CurriculoAluno(models.Model):
-
+    nome = models.CharField("Nome Completo", max_length=255, null=False)
+    email = models.CharField("Email", max_length=255, null=False)
+    matricula = models.CharField("Matricula", max_length=255, null=False)
+    curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
     rg = models.IntegerField("RG", null=False)
     cpf = models.IntegerField("CPF", null=False)
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
