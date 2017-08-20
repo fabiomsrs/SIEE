@@ -122,12 +122,16 @@ def institution_area(request):
         if user is not None:
             login(request, user)
 
-            if user.tipo_usuario == 'aluno':
-                print('admin')
+            if '1'in request.user.tipo_usuario:
+                print('ALUNO')
+                print(request.user.nome)
                 return redirect(settings.LOGIN_STUDENT)
-            if user.tipo_usuario == 'administrador':
-                print('aluno')
+            if '2' in request.user.tipo_usuario:
+                print('ADMIN')
                 return redirect(settings.LOGIN_REDIRECT_URL)
+            else:
+                print('nao encontrou nada')
+                return HttpResponse("<h1>LOGIN ERROR</h1>")
         else:
             return HttpResponse("<h1>LOGIN ERROR</h1>")
     else:

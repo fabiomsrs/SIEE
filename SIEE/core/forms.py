@@ -4,31 +4,30 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import CheckboxSelectMultiple
 
-from core.models import Empresa, Vaga, TipoVaga, CurriculoAluno, TipoUsuario
+from core.models import Empresa, Vaga, TipoVaga, CurriculoAluno, EstadoCivil
 
 User = get_user_model()
 
-class RegisterUser(UserCreationForm):
-    tipo_usuario = forms.TypedChoiceField(choices=TipoUsuario.choices(), coerce=str, required=False)
+class RegisterUser(forms.ModelForm):
 
-    # senha1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
-    # senha2 = forms.CharField(label='Confirmacao de Senha', widget=forms.PasswordInput)
-    #
-    # def verificar_senha(self):
-    #     senha1 = self.cleaned_data.get("senha1")
-    #     senha2 = self.cleaned_data.get("senha2")
-    #     if senha1 and senha2 and senha1 != senha2:
-    #         raise forms.ValidationError("A Confirmacao nao esta Correta")
-    #     return senha2
-    #
-    # def save(self, commit=True):
-    #     user = super(RegisterUser, self).save(commit=False)
-    #     user.set_password(self.cleaned_data['senha1'])
-    #
-    #     user.email = self.cleaned_data['email']
-    #     if commit:
-    #         user.save()
-    #     return user
+    senha1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    senha2 = forms.CharField(label='Confirmacao de Senha', widget=forms.PasswordInput)
+
+    def verificar_senha(self):
+        senha1 = self.cleaned_data.get("senha1")
+        senha2 = self.cleaned_data.get("senha2")
+        if senha1 and senha2 and senha1 != senha2:
+            raise forms.ValidationError("A Confirmacao nao esta Correta")
+        return senha2
+
+    def save(self, commit=True):
+        user = super(RegisterUser, self).save(commit=False)
+        user.set_password(self.cleaned_data['senha1'])
+
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
 
     class Meta:
         model = User
@@ -73,7 +72,9 @@ class RegisterMyCurriculum(forms.ModelForm):
                                                widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
                                                required=False)
 
-    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False),
+
+    estado_civil = forms.TypedChoiceField(choices=EstadoCivil.choices(), coerce=str, required=False)
 
     class Meta:
         model = CurriculoAluno

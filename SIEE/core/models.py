@@ -60,12 +60,15 @@ class Vaga(models.Model):
 
 class Usuario(AbstractBaseUser):
 
+    TIPO_USUARIO = (('1', 'ALUNO'),
+                    ('2', 'ADMIN'))
+
     username = models.CharField('Nome do Usuário', max_length=30, unique=True, validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
                                                                                                                      'invalid')])
     nome = models.CharField('Nome', max_length=100, blank=False)
     email = models.EmailField('E-mail', unique=True)
-    tipo_usuario = EnumField(TipoUsuario, max_length=255, default=TipoUsuario.ALUNO)
+    tipo_usuario = models.CharField("Tipo Usuario", max_length=255, blank=True, null=True, choices=TIPO_USUARIO)
 
     class Meta:
         verbose_name = 'Usuário'
@@ -80,7 +83,6 @@ class CurriculoAluno(models.Model):
     nome = models.CharField("Nome Completo", max_length=255, null=False)
     email = models.CharField("Email", max_length=255, null=False)
     matricula = models.CharField("Matricula", max_length=255, null=False)
-    curso_aluno = models.ForeignKey("Curso", related_name='curso_aluno', null=False)
     rg = models.IntegerField("RG", null=False)
     cpf = models.IntegerField("CPF", null=False)
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
