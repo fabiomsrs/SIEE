@@ -1,5 +1,7 @@
 from django import forms
+from django.core.mail import send_mail
 
+from config import settings
 from vaga.models import Empresa, Vaga, AreaAtuacao
 
 

@@ -1,19 +1,21 @@
 {% extends "base_student.html" %}
 {% block base_student %}
-<div class="container">
-    <div class="card">
-        <div class="card-content">
-            <form class="form-horizontal" method="POST">
-                <h5>Registre-se antes de usar</h5><br>
-                <fieldset>
-                    {% csrf_token %}
-                    {{ form_register_my_curriculum }}
-                    <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
-                </fieldset>
-                <br>
-            </form>
 
-        </div>
+<div class="card">
+    <div class="card-content">
+        <form class="form-horizontal" method="POST">
+            <h5>Registre-se antes de usar</h5><br>
+            <fieldset>
+                {% csrf_token %}
+                {{ form_register_my_curriculum }}
+                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+            </fieldset>
+            <br>
+        </form>
+
     </div>
+</div>
+<div class="container" align="center">
+    <br><br><button class="btn">Enviar Email</button><br><br>
 </div>
 {% endblock %}

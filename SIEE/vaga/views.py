@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from aluno.models import CurriculoAluno
 from config import settings
 from vaga.forms import *
 
@@ -44,9 +45,8 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
-
-def register_course(request):
-    template_name = 'register_course.html'
+def register_area(request):
+    template_name = 'register_area.html'
     if request.method == 'POST':
         form_register_course = RegisterCourseForm(request.POST)
 
@@ -60,10 +60,13 @@ def register_course(request):
     context = {'form_register_course' : form_register_course}
     return render(request, template_name, context)
 
-
-
-
 def list_vacancies(request):
     template_name = 'list_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
+    return render(request, template_name, context)
+
+
+def student_registration(request):
+    template_name = 'student_registration.html'
+    context = {'alunos' : CurriculoAluno.objects.all()}
     return render(request, template_name, context)

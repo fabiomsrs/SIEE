@@ -6,15 +6,17 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <title>SIEE - Encontre Estagios</title>
 </head>
 <body>
 
-<nav class="light-blue darken-4" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">SIEE</a>
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">SIEE</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{% url 'index' %}">Pagina Inicial</a></li>
+            <li><a href="{% url 'index' %}">Portal</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">

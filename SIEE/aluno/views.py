@@ -1,10 +1,18 @@
-from django.shortcuts import render, redirect
+import datetime
+import slug as slug
+from django.shortcuts import render, redirect, get_object_or_404
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from django.views.generic import View
+
+from aluno.utils import render_to_pdf  # created in step 4
 
 from config import settings
 from aluno.forms import *
 
 # Create your views here.
-from vaga.models import Vaga
+from vaga.models import Vaga, Empresa
 
 
 def my_curriculum(request):
@@ -15,7 +23,6 @@ def my_curriculum(request):
 
         if form_register_my_curriculum.is_valid():
             curriculum = form_register_my_curriculum.save(commit=False)
-            # aluno.curriculum = curriculum
             curriculum.save()
             return redirect(settings.STUDENT_HOME)
     else:
@@ -33,4 +40,59 @@ def student_home(request):
 def search_by_vacancies(request):
     template_name = 'search_by_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
+    return render(request, template_name, context)
+
+
+def detail_vacancy(request, vacancy_id):
+    template_name = 'detail_vacancy.html'
+    context = {'vaga' : Vaga.objects.get(id=vacancy_id)}
+    return render(request, template_name, context)
+
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('pdf_curriculo.html')
+        context = {
+            # "nome_id": request.user.user_curriculo.email,
+            "nome": request.user.nome,
+            "email": request.user.email,
+            "rg": request.user.user_curriculo.rg,
+            "endereco": request.user.user_curriculo.endereco,
+            "cpf": request.user.user_curriculo.cpf,
+            "objetivo": request.user.user_curriculo.objetivo,
+            "data_nascimento": request.user.user_curriculo.data_nascimento,
+            "serie": request.user.user_curriculo.serie,
+            "formacao_academica": request.user.user_curriculo.formacao_academica,
+            "cursos_extras": request.user.user_curriculo.cursos_extras,
+            "experiencia_profissional": request.user.user_curriculo.experiencia_profissional,
+        }
+        html = template.render(context)
+
+        pdf = render_to_pdf('pdf_curriculo.html', context)
+        if pdf:
+            reponse = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %("12341231")
+            content = "inline; filename='%s'" % (filename)
+
+            download = request.GET.get("download")
+            if download:
+                content = "attachement; filename='%s'" % (filename)
+            reponse['Content-Disposition'] = content
+            return reponse
+        return  HttpResponse("Not Found")
+
+
+def send_mail(request, company_id):
+    template_name = 'send_mail.html'
+    # context ={}
+    if request.method == 'POST':
+        form = ContactCompany(request.POST, instance=company_id)
+        if form.is_valid():
+            # context['is_valid']
+            # form.send_mail(company)
+            form = ContactCompany()
+    else:
+        form = ContactCompany()
+    context = {'form' : form}
+    # context['company'] = company
     return render(request, template_name, context)

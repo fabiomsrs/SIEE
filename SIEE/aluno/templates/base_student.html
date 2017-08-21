@@ -15,7 +15,8 @@
     <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">SIEE</a>
         <ul class="right hide-on-med-and-down">
-            <li class="black-text">Bem Vindo, {{user.nome.title}}</li>
+            <li><a href="{% url 'student_home' %}">Pagina Inicial</a></li>
+            <li class="black-text">Usuario - Aluno</li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
@@ -30,7 +31,7 @@
         <div class="background">
             <img src="../static/img/fundo_eventos.jpg">
         </div>
-        <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+        <a href="#!user"><img class="circle" src="../static/img/photo.jpg"></a>
         <a href="#!name"><span class="white-text name">Bem Vindo, {{user.nome.title}}</span></a>
         <a href="#!name"><span class="white-text name">Aluno</span></a>
         <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
@@ -41,9 +42,10 @@
     <li><a class="waves-effect" href="{% url 'logout_usuario' %}"><i class="material-icons">input</i>Encerrar Sessão</a></li>
 </ul>
 
-{% block base_student %}
 
-{% endblock %}
+    {% block base_student %}
+
+    {% endblock %}
 
 <div class="fixed-action-btn horizontal click-to-toggle">
     <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large red"><i class="material-icons">menu</i></a>
@@ -91,7 +93,7 @@
         max: false,
         format: 'yyyy-mm-dd'
     });
-
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
 </script>
 </body>
 </html>

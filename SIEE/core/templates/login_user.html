@@ -1,32 +1,67 @@
 {% extends "base_login.html" %}
 {% block base %}
 
-<div class="container">
-    <div class="row">
-        <br><br>
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<br><br>-->
 
-        <div class="col m8" align="center">
-            <h3>Acesso SIEE</h3>
-            <p>Para se registrar no sistema é preciso que a Instituição deve estar cadastrada. </p>
-        </div>
+<!--<div class="col m8" align="center">-->
+<!--<h3>Acesso SIEE</h3>-->
+<!--<p>Para se registrar no sistema é preciso que a Instituição deve estar cadastrada. </p>-->
+<!--</div>-->
 
-        <div class="col m4">
-            <div class="card">
-                <div class="card-content">
-                    <h5 class="center-align">Login</h5>
-                    <br>
-                    <div class="row">
-                        <form method="POST" name="register" class="register-form">
-                            {% csrf_token %}
-                            {{ form }}
-                            <button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>
-                            <h10><strong><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>
-                        </form>
+<!--<div class="col m4">-->
+<!--<div class="card">-->
+<!--<div class="card-content">-->
+<!--<h5 class="center-align">Login</h5>-->
+<!--<br>-->
+<!--<div class="row">-->
+<!--<form method="POST" name="register" class="register-form">-->
+<!--{% csrf_token %}-->
+<!--{{ form }}-->
+<!--<button type="submit" id='submit' class="btn-large waves-effect waves-light teal">Login</button><br><br>-->
+<!--<h10><strong><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col s4">
+                    <!--<h2 class="white-text">Acesso SIEE</h2>-->
+                    <!--<h6 class="white-text">Para se registrar no sistema é preciso que a Instituição deve estar cadastrada. </h6>-->
+                </div>
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-content">
+                            <h5 class="center-align">Login</h5>
+                            <br>
+                            <div class="row" align="center">
+                                <form method="POST" name="register" class="register-form">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <button type="submit" id='submit' class="btn-large waves-effect waves-light light-blue darken-4">Login</button><br><br>
+                                    <h10><strong class="light-blue-text"><a href="{% url 'register_user' %}"><h7>CLIQUE AQUI</h7> </a></strong> para se cadastrar</h10>
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="col s4">
+
                 </div>
             </div>
         </div>
     </div>
+    <div class="parallax"><img src="../static/img/background2.jpg" alt="Unsplashed background img 1"></div>
 </div>
+
+
 
 {% endblock %}

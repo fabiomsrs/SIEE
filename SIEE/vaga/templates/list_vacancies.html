@@ -1,32 +1,40 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
-<br><br>
-<div class="container" align="center">
-    <h4>Vagas Divulgadas Recentemente</h4>
-    <br>
-    <table class="striped">
-        <thead>
-        <tr>
-            <th>Curso</th>
-            <th>Empresa</th>
-            <th>Nº Vagas</th>
-            <th>Tipo de Vaga</th>
-            <th>Data de Inicio</th>
-        </tr>
-        </thead>
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
 
-        <tbody>
-        {% for vaga in vagas %}
-        <tr>
-            <td>{{vaga.curso_vaga}}</td>
-            <td>{{vaga.empresa_vaga}}</td>
-            <td>{{vaga.quantidade}}</td>
-            <td>{{vaga.tipo_vaga}}</td>
-            <td>{{vaga.data_inicio}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="container">
+            <div class="card"><div class="card-content">
+                <h4>Vagas Divulgadas Recentemente</h4>
+                <br>
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th>Area Atuação</th>
+                        <th>Empresa</th>
+                        <th>Nº Vagas</th>
+                        <th>Tipo de Vaga</th>
+                        <th>Status da Vaga</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for vaga in vagas %}
+                    <tr>
+                        <td>{{vaga.area_atuacao}}</td>
+                        <td>{{vaga.empresa_vaga}}</td>
+                        <td>{{vaga.quantidade}}</td>
+                        <td>{{vaga.tipo_vaga.title}}</td>
+                        <td>{{vaga.status.title}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="parallax"><img src="/static/img/background1.jpg" alt="Unsplashed background img 1"></div>
 </div>
-<br><br>
 {% endblock %}
