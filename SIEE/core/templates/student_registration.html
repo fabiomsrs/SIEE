@@ -1,32 +1,41 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
-<div class="card">
-    <div class="card-content">
-        <h4>Registro de Alunos</h4>
-        <br>
-        <table class="striped">
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Matricula</th>
-                <th>Serie</th>
-                <th>CPF</th>
-                <th>Email</th>
-            </tr>
-            </thead>
 
-            <tbody>
-            {% for aluno in alunos %}
-            <tr>
-                <td>{{aluno.nome.title}}</td>
-                <td>{{aluno.matricula}}</td>
-                <td>{{aluno.serie}}</td>
-                <td>{{aluno.cpf}}</td>
-                <td>{{aluno.email}}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <h4>Registro de Alunos</h4>
+                    <br>
+                    <table class="striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Matricula</th>
+                            <th>Serie</th>
+                            <th>CPF</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for aluno in alunos %}
+                        <tr>
+                            <td>{{aluno.nome.title}}</td>
+                            <td>{{aluno.matricula}}</td>
+                            <td>{{aluno.serie}}</td>
+                            <td>{{aluno.cpf}}</td>
+                            <td>{{aluno.email}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
 </div>
 {% endblock %}

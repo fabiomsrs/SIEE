@@ -1,58 +1,66 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Empresas</span>
-                    <p>Registre empresas ao banco de dados.</p>
-                </div>
-                <div class="card-action">
-                    <a href="{% url 'register_company' %}">Registrar Empresas</a>
-                    <a href="{% url 'list_companies' %}">Listar Empresas</a>
-                </div>
-            </div>
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Empresas</span>
+                            <p>Registre empresas ao banco de dados.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'register_company' %}">Registrar Empresas</a>
+                            <a href="{% url 'list_companies' %}">Listar Empresas</a>
+                        </div>
+                    </div>
 
-        </div>
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Vagas de Estagio</span>
-                    <p>Divulgue vagas para estagio, lembre se de registrar a empresa antes.</p>
                 </div>
-                <div class="card-action">
-                    <a href="{% url 'register_vacancy' %}">Divulgue Vagas</a>
-                    <a href="{% url 'list_vacancies' %}">Divulgadas recentemente</a>
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Vagas de Estagio</span>
+                            <p>Divulgue vagas para estagio, lembre se de registrar a empresa antes.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'register_vacancy' %}">Divulgue Vagas</a>
+                            <a href="{% url 'list_vacancies' %}">Divulgadas recentemente</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Alunos</span>
-                    <p>Consulte a tabela com o registro de todos os alunos cadastrados no sistema.</p>
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Alunos</span>
+                            <p>Consulte a tabela com o registro de todos os alunos cadastrados no sistema.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'student_registration' %}">Acessar</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-action">
-                    <a href="{% url 'student_registration' %}">Acessar</a>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Area de Atuação</span>
-                    <p>Registro no banco de dados.</p>
-                </div>
-                <div class="card-action">
-                    <a href="{% url 'register_area' %}">Adicionar</a>
-                    <a href="#">Minhas Areas de Atuação</a>
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Area de Atuação</span>
+                            <p>Registro no banco de dados.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'register_area' %}">Adicionar</a>
+                            <a href="#">Minhas Areas de Atuação</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
 </div>
+
+
+
+
 
 {% endblock %}
