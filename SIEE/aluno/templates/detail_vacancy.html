@@ -1,0 +1,55 @@
+{% extends "base_student.html" %}
+{% block base_student %}
+
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
+        <div class="container">
+
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Cargo</div>
+                    <div class="collapsible-body white"><span>{{ vaga.cargo }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">whatshot</i>Area de Atuação</div>
+                    <div class="collapsible-body white"><span>{{ vaga.area_atuacao }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Quantidade de Vagas</div>
+                    <div class="collapsible-body white"><span>{{ vaga.quantidade }} Vagas(s)</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Beneficios</div>
+                    <div class="collapsible-body white"><span>{{ vaga.beneficios }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Requisitos</div>
+                    <div class="collapsible-body white"><span>{{ vaga.requisitos }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Atividades</div>
+                    <div class="collapsible-body white"><span>{{ vaga.atividades }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Valor da Bolsa</div>
+                    <div class="collapsible-body white"><span>{{ vaga.valor }} R$</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Turno de Trabalho</div>
+                    <div class="collapsible-body white"><span>{{ vaga.turno.title }}</span></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>Sobre a Empresa</div>
+                    <div class="collapsible-body white"><span>Nome: {{ vaga.empresa_vaga.nome }}<br>Descricao: {{ vaga.empresa_vaga.descricao.title }}<br>Email: {{ vaga.empresa_vaga.email }}<br>Telefone: {{ vaga.empresa_vaga.telefone }}</span></div>
+                </li>
+            </ul>
+            <div class="container" align="center">
+                <button class="btn"><a href="{% url 'send_mail' vaga.empresa_vaga.id%}" class="white-text">Enviar Email</a></button><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
+</div>
+
+
+{% endblock %}

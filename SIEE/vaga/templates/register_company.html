@@ -1,23 +1,23 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 <br><br>
-<div class="container" align="center">
-    <form class="form-horizontal" method="POST">
-        {% csrf_token %}
-        <div class="container" align="center">
-            <div class="card">
-                <div class="card-content">
-                    <h5>Registrar Empresas</h5>
-                    <fieldset>
-                        {{ form_register_company }}
-                        <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
-                    </fieldset>
-                </div>
+
+<form class="form-horizontal" method="POST">
+    {% csrf_token %}
+    <div class="container" align="center">
+        <div class="card">
+            <div class="card-content">
+                <h5>Registrar Empresas</h5>
+                <fieldset>
+                    {{ form_register_company }}
+                    <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+                </fieldset>
             </div>
         </div>
-        <br>
-    </form>
+    </div>
+    <br>
+</form>
 
-</div>
+
 
 {% endblock %}

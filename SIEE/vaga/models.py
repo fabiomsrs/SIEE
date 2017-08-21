@@ -32,6 +32,9 @@ class Vaga(models.Model):
                     ('tarde', 'TARDE'),
                      ('noite', 'NOITE'))
 
+    STATUS_VAGA = (('ativo', 'ATIVO'),
+                   ('inativo', 'INATIVO'))
+
     area_atuacao = models.CharField('Area de Atuação', max_length=255, blank=False)
     cargo = models.CharField('Cargo', max_length=100, blank=False)
     quantidade = models.IntegerField("Quantidade de Vagas", null=False)
@@ -41,5 +44,6 @@ class Vaga(models.Model):
     atividades = models.CharField('Atividades', max_length=255, blank=False)
     valor = models.DecimalField("Valor", max_digits=15, decimal_places=2, default=0)
     turno = models.CharField('Turno Vaga', max_length=255, choices=TURNO_VAGA)
+    status = models.CharField('Status Vaga', max_length=255, choices=STATUS_VAGA, default='ativo')
     area_atuacao = models.ForeignKey('vaga.AreaAtuacao', related_name='curso_vaga')
     empresa_vaga = models.ForeignKey('vaga.Empresa', related_name='empresa_vaga')

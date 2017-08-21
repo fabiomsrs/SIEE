@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Meu Curriculo</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 12px;
+        }
+
+        h1 {
+            border-bottom: -15px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+        .title span {
+            color: #007cae;
+        }
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            border-bottom: -15px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+    <div class='header'>
+        <p class='title'>Meu Curriculo</p>
+    </div>
+    <div>
+        <div class='details'>
+            <h1>Dados Pessoais</h1>
+            <hr class='hrItem' />
+            Nome: {{ nome }}<br/>
+            Email: {{email}}<br/>
+            RG:  {{rg}}<br/>
+            CPF: {{ cpf }}<br/>
+            Endereco: {{ endereco }}<br/>
+            Data de Nascimento: {{data_nascimento}}<br/>
+
+            <h1>Objetivos</h1>
+            <hr class='hrItem' />
+            {{ objetivo }}<br/>
+
+            <h1>Formação</h1>
+            <hr class='hrItem' />
+            Formação Academica: {{formacao_academica}}<br/>
+
+            <h1>Cursos</h1>
+            <hr class='hrItem' />
+            Cursando: {{serie}} </br>
+            Cursos Extras: {{cursos_extras}}<br/>
+
+            <h1>Experiencia Profissional</h1>
+            <hr class='hrItem' />
+            {{experiencia_profissional}}<br/>
+        </div>
+    </div>
+</body>
+</html>

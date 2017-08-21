@@ -1,0 +1,32 @@
+{% extends "base_user.html" %}
+{% block base_institution %}
+<div class="card">
+    <div class="card-content">
+        <h4>Registro de Alunos</h4>
+        <br>
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matricula</th>
+                <th>Serie</th>
+                <th>CPF</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{aluno.nome.title}}</td>
+                <td>{{aluno.matricula}}</td>
+                <td>{{aluno.serie}}</td>
+                <td>{{aluno.cpf}}</td>
+                <td>{{aluno.email}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

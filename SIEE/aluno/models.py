@@ -8,6 +8,10 @@ class CurriculoAluno(models.Model):
                     ('casado', 'CASADO'),
                     ('divorciado', 'DIVORCIADO'))
 
+    SERIE = (('ensino_medio', 'ENSINO MEDIO'),
+                    ('ensino_superior', 'ENSINO SUPERIOR'),
+                    ('tecnico', 'TECNINO'))
+
     nome = models.CharField("Nome Completo", max_length=255, null=False)
     email = models.CharField("Email", max_length=255, null=False)
     matricula = models.CharField("Matricula", max_length=255, null=False)
@@ -16,7 +20,9 @@ class CurriculoAluno(models.Model):
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=False)
     endereco = models.CharField("Endereço", max_length=255, null=False)
     estado_civil = models.CharField("Estado Civil", max_length=255, blank=True, null=True, choices=ESTADO_CIVIL)
+    serie = models.CharField("Serie", max_length=255, blank=True, null=True, choices=SERIE)
     experiencia_profissional = models.CharField("Experiencia Profissional", max_length=255, null=True)
+    objetivo = models.CharField("Objetivos", max_length=255, null=True)
     cursos_extras = models.CharField("Cursos Extras", max_length=255, null=True)
     formacao_academica = models.CharField("Formação Academica", max_length=255, null=True)
     participacao_eventos = models.CharField("Participação em Eventos", max_length=255, null=True)
