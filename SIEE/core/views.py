@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -44,7 +45,7 @@ def register_user(request):
     return render(request, template_name, context)
 
 
-
+@login_required
 def institution_home(request):
     template_name = 'user_home.html'
     return render(request, template_name)

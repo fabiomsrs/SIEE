@@ -2,20 +2,26 @@
 {% block base_institution %}
 
 
-<form class="form-horizontal" method="POST">
-    {% csrf_token %}
-    <div class="container" align="center">
-        <div class="card"><div class="card-content">
-            <h5>Divulgue Vagas de Estagio</h5>
-            <fieldset>
-                {{ form_register_vacancy }}
-                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
-            </fieldset>
-        </div>
+
+
+<div id="index-banner" class="parallax-container2">
+    <div class="section no-pad-bot">
+        <div class="container" align="center">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                <div class="card"><div class="card-content">
+                    <h5>Divulgue Vagas de Estagio</h5>
+                    <fieldset>
+                        {{ form_register_vacancy }}
+                        <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+                    </fieldset>
+                </div>
+                </div>
+            </form>
         </div>
     </div>
-    <br>
-</form>
+    <div class="parallax"><img src="../static/img/background3.jpg" alt="Unsplashed background img 1"></div>
+</div>
 
 
 {% endblock %}

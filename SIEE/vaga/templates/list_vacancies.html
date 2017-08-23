@@ -11,6 +11,7 @@
                     <thead>
                     <tr>
                         <th>Area Atuação</th>
+                        <th>Cargo</th>
                         <th>Empresa</th>
                         <th>Nº Vagas</th>
                         <th>Tipo de Vaga</th>
@@ -22,6 +23,7 @@
                     {% for vaga in vagas %}
                     <tr>
                         <td>{{vaga.area_atuacao}}</td>
+                        <td>{{vaga.cargo}}</td>
                         <td>{{vaga.empresa_vaga}}</td>
                         <td>{{vaga.quantidade}}</td>
                         <td>{{vaga.tipo_vaga.title}}</td>

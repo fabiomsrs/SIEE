@@ -1,7 +1,7 @@
 import datetime
 import slug as slug
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views.generic import View
@@ -19,14 +19,14 @@ def my_curriculum(request):
     template_name = 'my_curriculum.html'
     # aluno = Aluno.objects.all().filter(id=request.user.id)
     if request.method == 'POST':
-        form_register_my_curriculum = RegisterMyCurriculum(request.POST)
+        form_register_my_curriculum = RegisterMyCurriculum(request.POST, instance=request.user.user_curriculo)
 
         if form_register_my_curriculum.is_valid():
             curriculum = form_register_my_curriculum.save(commit=False)
             curriculum.save()
             return redirect(settings.STUDENT_HOME)
     else:
-        form_register_my_curriculum = RegisterMyCurriculum(instance=request.user)
+        form_register_my_curriculum = RegisterMyCurriculum(instance=request.user.user_curriculo)
 
     context = {'form_register_my_curriculum' : form_register_my_curriculum}
     return render(request, template_name, context)
@@ -36,6 +36,7 @@ def my_curriculum(request):
 def student_home(request):
     template_name = 'student_home.html'
     return render(request, template_name)
+
 
 def search_by_vacancies(request):
     template_name = 'search_by_vacancies.html'
@@ -65,6 +66,7 @@ class GeneratePdf(View):
             "formacao_academica": request.user.user_curriculo.formacao_academica,
             "cursos_extras": request.user.user_curriculo.cursos_extras,
             "experiencia_profissional": request.user.user_curriculo.experiencia_profissional,
+            "participacao_eventos": request.user.user_curriculo.participacao_eventos,
         }
         html = template.render(context)
 
@@ -81,12 +83,12 @@ class GeneratePdf(View):
             return reponse
         return  HttpResponse("Not Found")
 
-
+@login_required
 def send_mail(request, company_id):
     template_name = 'send_mail.html'
     # context ={}
     if request.method == 'POST':
-        form = ContactCompany(request.POST, instance=company_id)
+        form = ContactCompany(request.POST)
         if form.is_valid():
             # context['is_valid']
             # form.send_mail(company)
