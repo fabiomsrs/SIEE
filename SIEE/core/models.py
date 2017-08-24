@@ -7,6 +7,8 @@ from enumfields import EnumField
 from enumfields import Enum
 
 # Create your models here.
+from aluno.models import CurriculoAluno
+
 
 class Usuario(AbstractBaseUser):
 
@@ -18,7 +20,7 @@ class Usuario(AbstractBaseUser):
                                                                                                                      'O nome do user so pode conter letras, digitos ou os''seguintes caracteres @/./+/-/_'
                                                                                                                      'invalid')])
     nome = models.CharField('Nome', max_length=100, blank=False)
-    email = models.EmailField('E-mail', unique=True)
+    email = models.EmailField('E-mail', max_length=255, unique=False)
     tipo_usuario = models.CharField("Tipo Usuario", max_length=255, blank=True, null=True, choices=TIPO_USUARIO, default='Aluno')
     user_curriculo = models.ForeignKey('aluno.CurriculoAluno', related_name='user_curriculo', null=True)
 
@@ -29,6 +31,13 @@ class Usuario(AbstractBaseUser):
     REQUIRED_FIELDS = ['email']
 
     object = UserManager()
+
+    def criar_curriculo(self):
+        curriculo = CurriculoAluno()
+        curriculo.nome = self.nome
+        curriculo.email = self.email
+        curriculo.save()
+        self.user_curriculo = curriculo
 
 
 #TODO SIEE class and Ficha de supervisão

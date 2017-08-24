@@ -1,5 +1,3 @@
-import datetime
-import slug as slug
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -23,6 +21,7 @@ def my_curriculum(request):
 
         if form_register_my_curriculum.is_valid():
             curriculum = form_register_my_curriculum.save(commit=False)
+            curriculum.curriculo_ativo = 'ativo'
             curriculum.save()
             return redirect(settings.STUDENT_HOME)
     else:
@@ -31,18 +30,14 @@ def my_curriculum(request):
     context = {'form_register_my_curriculum' : form_register_my_curriculum}
     return render(request, template_name, context)
 
-
-
 def student_home(request):
     template_name = 'student_home.html'
     return render(request, template_name)
-
 
 def search_by_vacancies(request):
     template_name = 'search_by_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
-
 
 def detail_vacancy(request, vacancy_id):
     template_name = 'detail_vacancy.html'
@@ -56,6 +51,7 @@ class GeneratePdf(View):
         context = {
             # "nome_id": request.user.user_curriculo.email,
             "nome": request.user.nome,
+            "telefone" : request.user.user_curriculo.telefone,
             "email": request.user.email,
             "rg": request.user.user_curriculo.rg,
             "endereco": request.user.user_curriculo.endereco,
@@ -98,3 +94,4 @@ def send_mail(request, company_id):
     context = {'form' : form}
     # context['company'] = company
     return render(request, template_name, context)
+

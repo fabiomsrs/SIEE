@@ -34,7 +34,7 @@
 
         </div>
     </div>
-    <div class="parallax"><img src="static/img/background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
 </div>
 
 
@@ -45,16 +45,16 @@
         <div class="row">
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-                    <h5 class="center">Buscas mais rapidas por estágio</h5>
+                    <h2 class="center black-text"><i class="material-icons">assignment</i></h2>
+                    <h5 class="center">Curriculo online</h5>
 
-                    <p class="light"><b>Busque vagas para trabalho, filtre sua area de atuação.</b></p>
+                    <p class="light"><b>Cadastre seus dados e gere seu curriculo online com mais facilidade, disponibilizamos seu PDF.</b></p>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                    <h2 class="center back-text"><i class="material-icons">assignment_ind</i></h2>
                     <h5 class="center">Crie seus Perfis Online</h5>
                     <p class="light"><b>Com os perfis online voce pode gerenciar um curriculo online, onde com apenas um clique você envia para qualquer empresa.</b></p>
                 </div>
@@ -62,7 +62,7 @@
 
             <div class="col s12 m4">
                 <div class="icon-block">
-                    <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                    <h2 class="center black-text"><i class="material-icons">assignment_late</i></h2>
                     <h5 class="center">Uma maneira fácil e rapida</h5>
 
                     <p class="light"><b>Cansou de procurar por vagas de trabalho na internet, aqui voce encontrar.  Nunca foi tão facil encontrar uma vaga de emprego.</b></p>
@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="static/img/background2.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="../static/img/background2.jpg" alt="Unsplashed background img 2"></div>
 </div>
 
 <div class="container">
@@ -109,13 +109,13 @@
             </div>
         </div>
     </div>
-    <div class="parallax"><img src="static/img/background5.jpg" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img src="../static/img/background5.jpg" alt="Unsplashed background img 3"></div>
 </div>
 <footer class="page-footer teal white">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="black-text">Sobre o Projeto</h5>
+                <h5 class="black-text">Missão do Projeto</h5>
                 <p class="grey-text black-text">Projeto desenvolvido para automatizar o processo de divulgação de estagios, como o intuito de passar na materia de OSM.</p>
 
 
@@ -123,18 +123,23 @@
             <div class="col l3 s12">
                 <h5 class="black-text">Alunos Envolvidos</h5>
                 <ul>
-                    <li><a class="black-text" href="#!">Kássio Lucas</a></li>
-                    <li><a class="black-text" href="#!">Sywrah Gabriela</a></li>
-                    <li><a class="black-text" href="#!">Fabiano de Santana</a></li>
-                    <li><a class="black-text" href="#!">Pablo Henrique</a></li>
-                    <li><a class="black-text" href="#!">Jefferson Luis</a></li>
-                    <li><a class="black-text" href="#!">Francisco Roberth</a></li>
+                    <li><a class="black-text" target="_blank" href="https://www.facebook.com/kacyo.luks">Kássio Lucas</a></li>
+                    <li><a class="black-text" target="_blank" href="#!">Sywrah Gabriela</a></li>
+                    <li><a class="black-text" target="_blank" href="!">Fabiano de Santana</a></li>
+                    <li><a class="black-text" target="_blank" href="#!">Pablo Henrique</a></li>
+                    <li><a class="black-text" target="_blank" href="#!">Jefferson Luis</a></li>
+                    <li><a class="black-text" target="_blank" href="#!">Francisco Roberth</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">
-                <h5 class="black-text">Connect</h5>
+                <h5 class="black-text">Contatos</h5>
                 <ul>
-                    <li><a class="black-text" href="#!">Link 1</a></li>
+                    <li><a class="black-text" href="#!">kassioleodido@gmail.com</a></li>
+                    <li><a class="black-text" href="#!">sywrahgabriella@gmail.com</a></li>
+                    <li><a class="black-text" href="#!">##</a></li>
+                    <li><a class="black-text" href="#!">##</a></li>
+                    <li><a class="black-text" href="#!">##</a></li>
+                    <li><a class="black-text" href="#!">##</a></li>
                 </ul>
             </div>
         </div>d
@@ -151,6 +156,10 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{% static 'js/init.js' %}"></script>
 <script src="{% static 'js/materialize.js' %}"></script>
-
+<script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+</script>
 </body>
 </html>

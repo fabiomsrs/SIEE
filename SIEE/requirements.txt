@@ -60,7 +60,7 @@ pbr==3.1.1
 pilkit==2.0
 Pillow==4.2.1
 psycopg2==2.7.2
-public==0.0.38
+public==0.0.0
 pycep-correios==2.2.0
 pylint==1.7.2
 PyPDF2==1.26.0
@@ -68,7 +68,7 @@ python-decouple==3.0
 pytz==2017.2
 reportlab==3.4.0
 requests==2.18.3
-self==0.0.14
+self==0.0.0
 setupfiles==0.0.50
 simplejson==3.11.1
 six==1.10.0

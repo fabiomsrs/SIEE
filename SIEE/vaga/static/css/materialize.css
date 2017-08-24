@@ -6320,7 +6320,7 @@ input[type=search]:not(.browser-default) + label:after,
 textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   display: block;
   content: "";
-  position: absolute;
+  /*position: absolute;*/
   top: 100%;
   left: 0;
   opacity: 0;
@@ -7022,7 +7022,7 @@ select {
 
 .select-wrapper span.caret {
   color: initial;
-  position: absolute;
+  /*position: absolute;*/
   right: 0;
   top: 0;
   bottom: 0;
@@ -7033,7 +7033,8 @@ select {
 }
 
 .select-wrapper + label {
-  position: absolute;
+  /*kassio alterou*/
+  /*position: absolute;*/
   top: -26px;
   font-size: 0.8rem;
 }

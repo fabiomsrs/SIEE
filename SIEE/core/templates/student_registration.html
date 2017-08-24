@@ -28,6 +28,7 @@
                             <td>{{aluno.serie}}</td>
                             <td>{{aluno.cpf}}</td>
                             <td>{{aluno.email}}</td>
+                            <td><a href="{% url 'detail_register_student' aluno.id %}">Detalhar</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>

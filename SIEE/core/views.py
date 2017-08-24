@@ -4,8 +4,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
+from aluno.models import CurriculoAluno
 from config import settings
 from core.forms import *
+
+from aluno.forms import RegisterMyCurriculum
+
+from core.models import Usuario
 
 User = get_user_model()
 
@@ -35,6 +40,7 @@ def register_user(request):
         form_register_user = RegisterUser(request.POST)
         if form_register_user.is_valid():
             usuario = form_register_user.save(commit=False)
+            usuario.criar_curriculo()
             usuario.save()
             return redirect(settings.REGISTER_USER)
         else:
@@ -58,7 +64,6 @@ def institution_area(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-
             if 'aluno'in request.user.tipo_usuario:
                 print('ALUNO')
                 return redirect(settings.STUDENT_HOME)
@@ -74,3 +79,14 @@ def institution_area(request):
         form = AuthenticationForm()
         return render(request, "login_user.html", {'form' : form} )
 
+
+@login_required
+def student_registration(request):
+    template_name = 'student_registration.html'
+    context = {'alunos' : CurriculoAluno.objects.all().filter(curriculo_ativo='ativo')}
+    return render(request, template_name, context)
+
+def detail_register_student(request, student_id):
+    template_name = 'detail_register_student.html'
+    context = {'student' : CurriculoAluno.objects.get(id=student_id)}
+    return render(request, template_name, context)

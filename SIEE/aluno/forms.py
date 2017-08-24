@@ -23,7 +23,7 @@ class RegisterMyCurriculum(forms.ModelForm):
 
     class Meta:
         model = CurriculoAluno
-        exclude = ['aluno']
+        exclude = ['aluno', 'curriculo_ativo']
         fields = '__all__'
 
 

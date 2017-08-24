@@ -7035,7 +7035,7 @@ select {
 }
 
 .select-wrapper + label {
-  position: absolute;
+  /*position: absolute;*/
   top: -26px;
   font-size: 0.8rem;
 }
