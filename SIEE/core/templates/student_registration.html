@@ -28,7 +28,9 @@
                             <td>{{aluno.serie}}</td>
                             <td>{{aluno.cpf}}</td>
                             <td>{{aluno.email}}</td>
-                            <td><a href="{% url 'detail_register_student' aluno.id %}">Detalhar</a></td>
+                            <td><a href="{% url 'detail_register_student' aluno.id %}"><i class="material-icons">search</i></a></td>
+                            <td><a href="#"><i class="material-icons">receipt</i></a></td>
+                            <td><a href="#"><i class="material-icons">library_books</i></a></td>
                         </tr>
                         {% endfor %}
                         </tbody>

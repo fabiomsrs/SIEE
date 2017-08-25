@@ -88,7 +88,7 @@ def institution_area(request):
 @login_required
 def student_registration(request):
     template_name = 'student_registration.html'
-    context = {'alunos' : CurriculoAluno.objects.all().filter(curriculo_ativo='ativo')}
+    context = {'alunos' : CurriculoAluno.objects.all()}
     return render(request, template_name, context)
 
 def detail_register_student(request, student_id):
