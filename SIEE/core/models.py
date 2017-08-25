@@ -32,13 +32,9 @@ class Usuario(AbstractBaseUser):
 
     object = UserManager()
 
-    def criar_curriculo(self):
-        curriculo = CurriculoAluno()
-        curriculo.nome = self.nome
-        curriculo.email = self.email
-        curriculo.save()
-        self.user_curriculo = curriculo
-
+    def add_curriculum(self, curriculum):
+        self.user_curriculo = curriculum
+        self.save()
 
 #TODO SIEE class and Ficha de supervisão
 

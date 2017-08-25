@@ -12,8 +12,8 @@ class CurriculoAluno(models.Model):
                     ('ensino_superior', 'ENSINO SUPERIOR'),
                     ('tecnico', 'TECNINO'))
 
-    ATIVO = (('ativo', 'ATIVO'),
-             ('inativo', 'INATIVO'))
+    # ATIVO = (('ativo', 'ATIVO'),
+    #          ('inativo', 'INATIVO'))
 
     nome = models.CharField("Nome Completo", max_length=255, null=False)
     email = models.CharField("Email", max_length=255, null=False)
@@ -30,4 +30,4 @@ class CurriculoAluno(models.Model):
     cursos_extras = models.CharField("Cursos Extras", max_length=255, null=True)
     formacao_academica = models.CharField("Formação Academica", max_length=255, null=True)
     participacao_eventos = models.CharField("Participação em Eventos", max_length=255, null=True)
-    curriculo_ativo = models.CharField("Curriculo Ativo", max_length=255, blank=True, null=True, choices=ATIVO, default='inativo')
+    # curriculo_ativo = models.CharField("Curriculo Ativo", max_length=255, blank=True, null=True, choices=ATIVO, default='inativo')

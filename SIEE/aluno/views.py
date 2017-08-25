@@ -21,8 +21,8 @@ def my_curriculum(request):
 
         if form_register_my_curriculum.is_valid():
             curriculum = form_register_my_curriculum.save(commit=False)
-            curriculum.curriculo_ativo = 'ativo'
             curriculum.save()
+            request.user.add_curriculum(curriculum)
             return redirect(settings.STUDENT_HOME)
     else:
         form_register_my_curriculum = RegisterMyCurriculum(instance=request.user.user_curriculo)

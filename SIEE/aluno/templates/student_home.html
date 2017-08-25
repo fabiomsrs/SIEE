@@ -13,7 +13,9 @@
                         </div>
                         <div class="card-action">
                             <a href="{% url 'my_curriculum' %}">Meu Curriculo</a>
-                            <a href="{% url 'gerar_pdf' %}">Gerar Curriculo PDF</a>
+                            {% if request.user.user_curriculo %}
+                                <a target="_blank" href="{% url 'gerar_pdf' %}">Gerar Curriculo PDF</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
