@@ -1,12 +1,22 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 
-    <div class="container">
-        <div class="collection">
-            <a href="{% url 'pdf_student' %}" class="collection-item">Relatorio de Alunos</a>
-            <a href="#!" class="collection-item">Relatorio de Vagas Divulgadas</a>
-            <a href="#!" class="collection-item">Relatorio 4</a>
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4 align="center">Relatorios do Sistema</h4>
+                        <div class="collection">
+                            <a target=`_blank` href="{% url 'pdf_student' %}" class="collection-item black-text">Relatorio de Alunos</a>
+                            <a href="#!" class="collection-item black-text">Relatorio de Vagas Divulgadas</a>
+                            <a href="#!" class="collection-item black-text">Relatorio 4</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
     </div>
 
 {% endblock %}
