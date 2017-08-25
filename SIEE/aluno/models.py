@@ -24,7 +24,7 @@ class CurriculoAluno(models.Model):
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=True)
     endereco = models.CharField("Endereço", max_length=255, null=True)
     estado_civil = models.CharField("Estado Civil", max_length=255, blank=True, null=True, choices=ESTADO_CIVIL)
-    serie = models.CharField("Serie", max_length=255, blank=True, null=True, choices=SERIE)
+    escolaridade = models.CharField("Escolaridade", max_length=255, blank=True, null=True, choices=SERIE)
     experiencia_profissional = models.CharField("Experiencia Profissional", max_length=255, null=True)
     objetivo = models.CharField("Objetivos", max_length=255, null=True)
     cursos_extras = models.CharField("Cursos Extras", max_length=255, null=True)

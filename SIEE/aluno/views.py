@@ -59,7 +59,7 @@ class GeneratePdf(View):
             "cpf": request.user.user_curriculo.cpf,
             "objetivo": request.user.user_curriculo.objetivo,
             "data_nascimento": request.user.user_curriculo.data_nascimento,
-            "serie": request.user.user_curriculo.serie,
+            "escolaridade": request.user.user_curriculo.escolaridade,
             "formacao_academica": request.user.user_curriculo.formacao_academica,
             "cursos_extras": request.user.user_curriculo.cursos_extras,
             "experiencia_profissional": request.user.user_curriculo.experiencia_profissional,
@@ -88,13 +88,10 @@ def send_mail(request, company_id):
     if request.method == 'POST':
         form = ContactCompanyForm(request.POST)
         if form.is_valid():
-            # context['is_valid']
-            # form.send_mail(company)
             empresa = Empresa.objects.get(id=company_id)
-            email = EmailMessage(form.cleaned_data['nome'], form.cleaned_data['message'], to=[empresa.email])
+            email = EmailMessage(form.cleaned_data['nome'] + ' Solicitacao de Estagio from SIEE', form.cleaned_data['message'], to=[empresa.email])
             email.send()
             return redirect (settings.SEND_MAIL)
-
     else:
         form = ContactCompanyForm()
 

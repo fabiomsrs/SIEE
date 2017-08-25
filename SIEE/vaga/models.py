@@ -35,7 +35,6 @@ class Vaga(models.Model):
     STATUS_VAGA = (('ativo', 'ATIVO'),
                    ('inativo', 'INATIVO'))
 
-    area_atuacao = models.CharField('Area de Atuação', max_length=255, blank=False)
     cargo = models.CharField('Cargo', max_length=100, blank=False)
     quantidade = models.IntegerField("Quantidade de Vagas", null=False)
     tipo_vaga = models.CharField('Tipo Vaga', max_length=255, choices=TIPO_VAGA)
