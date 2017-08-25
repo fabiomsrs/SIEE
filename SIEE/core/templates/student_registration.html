@@ -24,8 +24,8 @@
                         {% for aluno in alunos %}
                         <tr>
                             <td>{{aluno.nome.title}}</td>
-                            <td>{{aluno.matricula}}</td>
-                            <td>{{aluno.serie}}</td>
+                            <td>{{aluno.matricula.upper}}</td>
+                            <td>{{aluno.serie.title}}</td>
                             <td>{{aluno.cpf}}</td>
                             <td>{{aluno.email}}</td>
                             <td><a href="{% url 'detail_register_student' aluno.id %}"><i class="material-icons">search</i></a></td>
