@@ -1,33 +1,37 @@
 {% extends "base_student.html" %}
 {% block base_student %}
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Crie seu Curriculo Pessoal</span>
-                    <p>Registre empresas ao banco de dados.</p>
-                </div>
-                <div class="card-action">
-                    <a href="{% url 'my_curriculum' %}">Meu Curriculo</a>
-                    <a href="{% url 'gerar_pdf' %}">Gerar Curriculo PDF</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="col s12 m6">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">Buscar Estagios</span>
-                    <p>Divulgue vagas para estagio, lembre se de registrar a empresa antes.</p>
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Crie seu Curriculo Pessoal</span>
+                            <p>Registre empresas ao banco de dados.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'my_curriculum' %}">Meu Curriculo</a>
+                            {% if request.user.user_curriculo %}
+                                <a target="_blank" href="{% url 'gerar_pdf' %}">Gerar Curriculo PDF</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-action">
-                    <a href="{% url 'search_by_vacancies' %}">Ver Vagas</a>
+                <div class="col s12 m6">
+                    <div class="card light-blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Buscar Estagios</span>
+                            <p>Divulgue vagas para estagio, lembre se de registrar a empresa antes.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'search_by_vacancies' %}">Ver Vagas</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
+    <div class="parallax"><img src="../static/img/background5.jpg" alt="Unsplashed background img 1"></div>
 </div>
-
 {% endblock %}

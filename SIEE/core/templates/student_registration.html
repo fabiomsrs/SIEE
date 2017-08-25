@@ -1,7 +1,6 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 
-
 <div id="index-banner" class="parallax-container2">
     <div class="section no-pad-bot">
         <div class="container">
@@ -19,15 +18,17 @@
                             <th>Email</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         {% for aluno in alunos %}
                         <tr>
                             <td>{{aluno.nome.title}}</td>
-                            <td>{{aluno.matricula}}</td>
-                            <td>{{aluno.serie}}</td>
+                            <td>{{aluno.matricula.upper}}</td>
+                            <td>{{aluno.serie.title}}</td>
                             <td>{{aluno.cpf}}</td>
                             <td>{{aluno.email}}</td>
+                            <td><a href="{% url 'detail_register_student' aluno.id %}"><i class="material-icons" title="Detalhar">search</i></a></td>
+                            <td><a href="#"><i class="material-icons" title="Termo 1">receipt</i></a></td>
+                            <td><a href="#"><i class="material-icons" title="Termo 1">library_books</i></a></td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -38,4 +39,5 @@
     </div>
     <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
 </div>
+
 {% endblock %}

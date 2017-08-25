@@ -50,6 +50,7 @@
             <h1>Dados Pessoais</h1>
             <hr class='hrItem' />
             Nome: {{ nome }}<br/>
+            Telefone: {{ telefone }}<br/>
             Email: {{email}}<br/>
             RG:  {{rg}}<br/>
             CPF: {{ cpf }}<br/>
@@ -58,7 +59,7 @@
 
             <h1>Objetivos</h1>
             <hr class='hrItem' />
-            {{ objetivo }}<br/>
+            {{ objetivo.title }}<br/>
 
             <h1>Formação</h1>
             <hr class='hrItem' />
@@ -72,6 +73,10 @@
             <h1>Experiencia Profissional</h1>
             <hr class='hrItem' />
             {{experiencia_profissional}}<br/>
+
+            <h1>Participação em Eventos</h1>
+            <hr class='hrItem' />
+            {{participacao_eventos.title}}<br/>
         </div>
     </div>
 </body>

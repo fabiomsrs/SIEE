@@ -1,39 +1,42 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 
-<div id="index-banner" class="parallax-container2">
-    <div class="section no-pad-bot">
-        <div class="container">
-            <div class="card">
-                <div class="card-content">
-                    <h4>Empresas Cadastradas</h4>
-                    <br>
-                    <table class="striped">
-                        <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Endereço</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Empresas Cadastradas</h4>
+                        <br>
+                        <table class="striped">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Endereço</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                            </tr>
+                            </thead>
 
-                        <tbody>
-                        {% for empresa in empresas %}
-                        <tr>
-                            <td>{{empresa.nome.title}}</td>
-                            <td>{{empresa.endereco}}</td>
-                            <td>{{empresa.telefone}}</td>
-                            <td>{{empresa.email}}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            <tbody>
+                            {% for empresa in empresas %}
+                                <tr>
+                                    <td>{{empresa.nome.title}}</td>
+                                    <td>{{empresa.endereco}}</td>
+                                    <td>{{empresa.telefone}}</td>
+                                    <td>{{empresa.email}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="container" align="center">
+                        <a href="{% url 'register_company' %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a><br><br>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
     </div>
-    <div class="parallax"><img src="../static/img/background1.jpg" alt="Unsplashed background img 1"></div>
-</div>
 
 {% endblock %}

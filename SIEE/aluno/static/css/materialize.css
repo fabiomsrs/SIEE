@@ -2490,8 +2490,10 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Define consistent border, margin, and padding.
  */
+
+
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 0px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -4475,7 +4477,7 @@ html {
 
 @media only screen and (min-width: 1200px) {
   html {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -7033,7 +7035,7 @@ select {
 }
 
 .select-wrapper + label {
-  position: absolute;
+  /*position: absolute;*/
   top: -26px;
   font-size: 0.8rem;
 }

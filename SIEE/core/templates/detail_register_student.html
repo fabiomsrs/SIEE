@@ -1,0 +1,109 @@
+{% extends "base_user.html" %}
+{% block base_institution %}
+
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4 class="black-text" align="center">Registro do Aluno {{ student.nome.title }} Detalhado</h4>
+                        <br><br>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.nome }}" id="first_name" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Nome</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.email }}" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Email</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.matricula.upper }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Matricula</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.rg }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">RG</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.estado_civil.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Estado Civil</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.telefone }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Telefone</label>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.cpf }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">CPF</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.data_nascimento }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Data Nascimento</label>
+                                    </div>
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.endereco.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Endereco</label>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input disabled value="{{ student.experiencia_profissional }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Experiencia Profissional</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input disabled value="{{ student.cursos_extras }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Cursos Extras</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4">
+                                        <input disabled value="{{ student.serie.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Cursando</label>
+                                    </div>
+                                    <div class="input-field col s8">
+                                        <input disabled value="{{ student.objetivo.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Objetivo</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input disabled value="{{ student.formacao_academica.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Formação Academica</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input disabled value="{{ student.participacao_eventos.title }}" id="disabled" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text">Participação em Eventos</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container" align="center">
+                            <div class="col s6">
+                                <button class="btn">Formulario 1</button>
+                            </div>
+                            <div class="col s6">
+                                <button class="btn">Formulario 2</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="../static/img/background4.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+{% endblock %}

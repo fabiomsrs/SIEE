@@ -16,11 +16,12 @@
         <a id="logo-container" href="#" class="brand-logo">SIEE</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'student_home' %}">Pagina Inicial</a></li>
-            <li class="black-text">Usuario - Aluno</li>
+            <li><a href="{% url 'logout_usuario' %}">Encerrar Sessão</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li>Bem Vindo, {{user.nome.title}}</li>
+            <li><a href="{% url 'student_home' %}">Pagina Inicial</a></li>
+            <li><a class="waves-effect" href="{% url 'logout_usuario' %}">Encerrar Sessão</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -33,44 +34,42 @@
         </div>
         <a href="#!user"><img class="circle" src="../static/img/photo.jpg"></a>
         <a href="#!name"><span class="white-text name">Bem Vindo, {{user.nome.title}}</span></a>
-        <a href="#!name"><span class="white-text name">Aluno</span></a>
         <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
     </div></li>
-    <li><a href="{% url 'student_home' %}"><i class="material-icons">home</i>Pagina Inicial</a></li>
     <li><a href="#"><i class="material-icons">home</i>Meu Curriculo</a></li>
     <li><a href="#"><i class="material-icons">home</i>Buscar Vagas</a></li>
-    <li><a class="waves-effect" href="{% url 'logout_usuario' %}"><i class="material-icons">input</i>Encerrar Sessão</a></li>
 </ul>
-
 
     {% block base_student %}
 
     {% endblock %}
 
 <div class="fixed-action-btn horizontal click-to-toggle">
-    <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large red"><i class="material-icons">menu</i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large pulse red"><i class="material-icons">menu</i></a>
 </div>
 
 <footer class="page-footer light-blue darken-4">
     <div class="container">
         <div class="row">
+
             <div class="col l6 s12">
                 <h5 class="white-text">Quem somos</h5>
                 <p class="grey-text text-lighten-4">Projeto desenvolvido para automatizar o processo de divulgação de estagios, como o intuito de passar na materia de OSM.</p>
-
-
             </div>
+
             <div class="col l3 s12">
-                <h5 class="white-text">Redes Sociais</h5>
+                <h5 class="white-text">Contatos</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Facebook/JacaSoftware</a></li>
+                    <li><a class="white-text" href="#!">telefone</a></li>
+                    <li><a class="white-text" href="#!">email</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+
         </div>
     </div>
 </footer>
@@ -93,7 +92,13 @@
         max: false,
         format: 'yyyy-mm-dd'
     });
+
     $('.carousel.carousel-slider').carousel({fullWidth: true});
+
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+
 </script>
 </body>
 </html>

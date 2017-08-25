@@ -1,26 +1,39 @@
 {% extends "base_student.html" %}
 {% block base_student %}
-<br><br>
 
-<div class="container">
-    <div class="row">
-        {% for vaga in vagas %}
-        <div class="col s4">
-            <div class="card light-blue darken-4">
-                <div class="card-content white-text">
-                    <span class="card-title">{{ vaga.cargo }}</span>
-                    <p>{{ vaga.atividades }}.</p>
-                    <p>Area de Atuação:  {{ vaga.area_atuacao }}.</p>
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container">
+
+                <div class="input-field col s12 white">
+                    <select >
+                        <option value="" disabled selected>Selecione um Curso para busca mais aprimorada</option>
+                        <option value="1">Informatica</option>
+                        <option value="2">Alimentos</option>
+                        <option value="3">Mecanica</option>
+                    </select>
                 </div>
-                <div class="card-action">
-                    <a href="{% url 'detail_vacancy' vaga.id %}">Detalhar Vaga</a>
-                    <a href="#">Enviar Email</a>
+
+                <div class="row">
+                    {% for vaga in vagas %}
+                        <div class="col s4">
+                            <div class="card light-blue darken-4">
+                                <div class="card-content white-text">
+                                    <span class="card-title">{{ vaga.cargo }}</span>
+                                    <p>{{ vaga.atividades }}.</p>
+                                    <p>Area de Atuação:  {{ vaga.area_atuacao }}.</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="{% url 'detail_vacancy' vaga.id %}">Detalhar Vaga</a>
+                                    <a href="{% url 'send_mail' vaga.empresa_vaga.id%}">Enviar Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="parallax"><img src="../static/img/background5.jpg" alt="Unsplashed background img 1"></div>
     </div>
-</div>
-
 
 {% endblock %}

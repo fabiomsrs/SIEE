@@ -4505,7 +4505,7 @@ html {
 
 @media only screen and (min-width: 1200px) {
   html {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -7063,7 +7063,7 @@ select {
 }
 
 .select-wrapper + label {
-  position: absolute;
+  /*position: absolute;*/
   top: -26px;
   font-size: 0.8rem;
 }

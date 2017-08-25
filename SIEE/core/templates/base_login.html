@@ -18,7 +18,6 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'index' %}">Portal</a></li>
         </ul>
-
         <ul id="nav-mobile" class="side-nav">
             <li><a href="#">Navbar Link</a></li>
         </ul>
@@ -36,7 +35,6 @@
             <div class="col l6 s12">
                 <h5 class="white-text">Quem somos</h5>
                 <p class="grey-text text-lighten-4">Projeto desenvolvido para automatizar o processo de divulgação de estagios, como o intuito de passar na materia de OSM.</p>
-
             </div>
             <div class="col l3 s12">
                 <h5 class="white-text">Redes Sociais</h5>
@@ -69,6 +67,9 @@
         min: [1917, 01, 01],
         max: false,
         format: 'yyyy-mm-dd'
+    });
+    $(document).ready(function(){
+      $('.parallax').parallax();
     });
 
 </script>

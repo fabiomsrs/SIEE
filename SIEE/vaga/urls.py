@@ -8,5 +8,5 @@ urlpatterns = [
     url('^register_company/$', views.register_company, name="register_company"),
     url('^register_vacancy/$', views.register_vacancy, name="register_vacancy"),
     url('^register_area/$', views.register_area, name="register_area"), #alterar classe
-    url('^student_registration/$', views.student_registration, name='student_registration'),
+
 ]

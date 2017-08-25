@@ -5,7 +5,7 @@ from django.db import models
 
 class AreaAtuacao(models.Model):
     nome = models.CharField("Area Atuacao",max_length=255, null=False)
-    area = models.CharField("Descrição",max_length=255)
+    curso = models.CharField("Curso",max_length=255)
 
     def __str__(self):
         return self.nome

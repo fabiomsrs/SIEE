@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from aluno.models import CurriculoAluno
@@ -6,7 +7,7 @@ from vaga.forms import *
 
 # Create your views here.
 
-
+@login_required
 def register_company(request):
     template_name = 'register_company.html'
     if request.method == 'POST':
@@ -23,11 +24,13 @@ def register_company(request):
 
     return render(request, template_name, context)
 
+@login_required
 def list_companies(request):
     template_name = 'list_companies.html'
     context = {'empresas' : Empresa.objects.all()}
     return render(request, template_name, context)
 
+@login_required
 def register_vacancy(request):
     template_name = 'register_vacancy.html'
     if request.method == 'POST':
@@ -45,6 +48,7 @@ def register_vacancy(request):
     context = {'form_register_vacancy' : form_register_vacancy}
     return render(request, template_name, context)
 
+@login_required
 def register_area(request):
     template_name = 'register_area.html'
     if request.method == 'POST':
@@ -60,13 +64,9 @@ def register_area(request):
     context = {'form_register_course' : form_register_course}
     return render(request, template_name, context)
 
+@login_required
 def list_vacancies(request):
     template_name = 'list_vacancies.html'
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
 
-
-def student_registration(request):
-    template_name = 'student_registration.html'
-    context = {'alunos' : CurriculoAluno.objects.all()}
-    return render(request, template_name, context)
