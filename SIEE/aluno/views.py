@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views.generic import View
+from django.core.mail import EmailMessage
 
 from aluno.utils import render_to_pdf  # created in step 4
 
@@ -83,15 +84,24 @@ class GeneratePdf(View):
 def send_mail(request, company_id):
     template_name = 'send_mail.html'
     # context ={}
+
     if request.method == 'POST':
-        form = ContactCompany(request.POST)
+        form = ContactCompanyForm(request.POST)
         if form.is_valid():
             # context['is_valid']
             # form.send_mail(company)
-            form = ContactCompany()
+            empresa = Empresa.objects.get(id=company_id)
+            email = EmailMessage(form.cleaned_data['nome'], form.cleaned_data['message'], to=[empresa.email])
+            email.send()
+            return redirect (settings.SEND_MAIL)
+
     else:
-        form = ContactCompany()
-    context = {'form' : form}
+        form = ContactCompanyForm()
+
+    context = {'form' : form,
+               'company' : Empresa.objects.get(id=company_id)}
     # context['company'] = company
     return render(request, template_name, context)
+
+
 

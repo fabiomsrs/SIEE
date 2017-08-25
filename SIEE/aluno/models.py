@@ -20,7 +20,7 @@ class CurriculoAluno(models.Model):
     telefone = models.IntegerField("Telefone", null=True)
     matricula = models.CharField("Matricula", max_length=255, null=True)
     rg = models.IntegerField("RG", null=True)
-    cpf = models.IntegerField("CPF", null=True)
+    cpf = models.CharField("CPF", null=True, max_length=11)
     data_nascimento = models.DateField("Data Nascimento", blank=True, null=True)
     endereco = models.CharField("Endereço", max_length=255, null=True)
     estado_civil = models.CharField("Estado Civil", max_length=255, blank=True, null=True, choices=ESTADO_CIVIL)

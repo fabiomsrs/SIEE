@@ -1,9 +1,12 @@
+from urllib import request
+
 from django.core.mail import send_mail
 
 from aluno.models import CurriculoAluno
 from django import forms
 
 from config import settings
+from django.core.mail import EmailMessage
 
 
 class RegisterMyCurriculum(forms.ModelForm):
@@ -19,7 +22,7 @@ class RegisterMyCurriculum(forms.ModelForm):
                                            widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
                                            required=False)
 
-    data_nascimento = forms.DateField(label='Data Nascimento', widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False),
+    data_nascimento = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
 
     class Meta:
         model = CurriculoAluno
@@ -27,28 +30,15 @@ class RegisterMyCurriculum(forms.ModelForm):
         fields = '__all__'
 
 
-class ContactCompany(forms.Form):
+class ContactCompanyForm(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
-    email = forms.EmailField(label='E-mail')
+    # email = forms.EmailField(label='E-mail')
     message = forms.CharField(label='Mensagem', max_length=100, widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
                               required=False)
 
-# def send_mail(self, company):
-#     subject = '[%s] Contato' % company
-#     message = 'Nome: %s(name)s;Email: %(email)s; %(message)s'
-#     context = {
-#         'name': self.cleaned_data['name'],
-#         'email': self.cleaned_data['email'],
-#         'message': self.cleaned_data['message']
-#     }
-#
-#     message = message % context
-#     send_mail(
-#         subject, message, settings.DEFAULT_FROM_EMAIL,
-#               [settings.CONTACT_EMAIL]
-#     )
-
-
+    # def send_mail(self, empresa_email):
+    #     email = EmailMessage('Solicitacao de Vaga de Estagio de ', 'message', to=[empresa_email])
+    #     email.send()
 
 class SearchByVacancies(forms.Form):
     pass

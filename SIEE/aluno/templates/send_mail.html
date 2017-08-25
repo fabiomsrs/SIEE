@@ -1,20 +1,35 @@
 {% extends "base_student.html" %}
 {% block base_student %}
 
-<div class="container" align="center">
-    <div class="card">
-        <div class="card-content">
-            <form class="form-horizontal" method="POST">
-                <h5>Envie uma mensagem</h5><br>
-                <fieldset>
-                    {% csrf_token %}
-                    {{ form }}
-                    <button type="submit" name="_submit" class="btn">Enviar</button><br><br>
-                </fieldset>
-                <br>
-            </form>
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container" align="center">
+                <div class="card">
+                    <div class="card-content">
+                        <form class="form-horizontal" method="POST">
+                            <h5 class="center">Envie uma mensagem</h5><br>
+                            <fieldset>
+                                <div class="row">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <div class="input-field col s12">
+                                        <input disabled value="{{ company.email }}" id="first_name" type="text" class="validate black-text">
+                                        <label for="disabled" class="black-text center">Email Empresa</label>
+                                    </div>
+                                    <button type="submit" name="_submit" class="btn">Enviar</button><br><br>
+                                </div>
+                            </fieldset>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="parallax"><img src="/static/img/background1.jpg" alt="Unsplashed background img 1"></div>
     </div>
-</div>
+
+    <div class="container" align="center">
+
+    </div>
 
 {% endblock %}
