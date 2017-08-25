@@ -13,15 +13,15 @@
                         <option value="3">Mecanica</option>
                     </select>
                 </div>
-
                 <div class="row">
                     {% for vaga in vagas %}
-                        <div class="col s4">
+                        <div class="col s6">
                             <div class="card light-blue darken-4">
                                 <div class="card-content white-text">
-                                    <span class="card-title">{{ vaga.cargo }}</span>
-                                    <p>{{ vaga.atividades }}.</p>
+                                    <span class="card-title center">{{ vaga.cargo.upper }}</span>
+                                    <p>Atividades: {{ vaga.atividades.title }}.</p>
                                     <p>Area de Atuação:  {{ vaga.area_atuacao }}.</p>
+                                    <p>Empresa:  {{ vaga.empresa_vaga.nome.upper }}</p>
                                 </div>
                                 <div class="card-action">
                                     <a href="{% url 'detail_vacancy' vaga.id %}">Detalhar Vaga</a>

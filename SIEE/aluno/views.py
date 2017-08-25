@@ -89,9 +89,10 @@ def send_mail(request, company_id):
         form = ContactCompanyForm(request.POST)
         if form.is_valid():
             empresa = Empresa.objects.get(id=company_id)
-            email = EmailMessage(form.cleaned_data['nome'] + ' Solicitacao de Estagio from SIEE', form.cleaned_data['message'], to=[empresa.email])
+            # handle_uploaded_file(request.FILE['file'])
+            email = EmailMessage(form.cleaned_data['nome'] + ' Solicitacao de Estagio from SIEE', form.cleaned_data['message'] + '\nSegue link para curriculo', to=[empresa.email])
             email.send()
-            return redirect (settings.SEND_MAIL)
+            return redirect(settings.SEND_MAIL)
     else:
         form = ContactCompanyForm()
 

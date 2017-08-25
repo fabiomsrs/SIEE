@@ -35,6 +35,7 @@ class ContactCompanyForm(forms.Form):
     # email = forms.EmailField(label='E-mail')
     message = forms.CharField(label='Mensagem', max_length=100, widget=forms.TextInput(attrs={'class': 'materialize-textarea'}),
                               required=False)
+    # file = forms.FileField(label='Anexe seu Curriculo', required=False)
 
     # def send_mail(self, empresa_email):
     #     email = EmailMessage('Solicitacao de Vaga de Estagio de ', 'message', to=[empresa_email])
