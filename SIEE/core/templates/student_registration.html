@@ -11,20 +11,20 @@
                     <table class="striped">
                         <thead>
                         <tr>
-                            <th>Nome</th>
                             <th>Matricula</th>
+                            <th>Nome</th>
                             <th>Escolaridade</th>
-                            <th>CPF</th>
+                            <th>Telefone</th>
                             <th>Email</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for aluno in alunos %}
                         <tr>
-                            <td>{{aluno.nome.title}}</td>
                             <td>{{aluno.matricula.upper}}</td>
+                            <td>{{aluno.nome.title}}</td>
                             <td>{{aluno.escolaridade.title}}</td>
-                            <td>{{aluno.cpf}}</td>
+                            <td>{{aluno.telefone}}</td>
                             <td>{{aluno.email}}</td>
                             <td><a href="{% url 'detail_register_student' aluno.id %}"><i class="material-icons" title="Detalhar">search</i></a></td>
                             <td><a href="#"><i class="material-icons" title="Termo 1">receipt</i></a></td>
