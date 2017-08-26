@@ -6,6 +6,8 @@ from config import settings
 from vaga.forms import *
 
 # Create your views here.
+from vaga.models import AreaAtuacao
+
 
 @login_required
 def register_company(request):
@@ -70,3 +72,8 @@ def list_vacancies(request):
     context = {'vagas' : Vaga.objects.all()}
     return render(request, template_name, context)
 
+@login_required
+def list_area(request):
+    template_name = 'list_area.html'
+    context = {'areas' : AreaAtuacao.objects.all()}
+    return render(request, template_name, context)

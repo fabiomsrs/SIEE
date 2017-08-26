@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>Relatorio de Alunos</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 8px;
+        }
+
+        h1 {
+            border-bottom: -15px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #000000;
+        }
+        .title {
+            font-size: 18px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+        .title span {
+            color: #007cae;
+        }
+
+        table, th, td {
+            border-bottom: .1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-bottom: .1px solid black;
+            width: 100%;
+        }
+
+        table, th, td {
+            border-bottom: .1px solid black;
+        }
+
+        th {
+            height: 20px;
+            background-color: #9F9F9F;
+            padding-bottom: -5px;
+        }
+
+        td {
+            height: 20px;
+            vertical-align: bottom;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper' align="left">
+    <div class='header'>
+        <p class='title'>Relatorio de Vagas Divulgadas</p>
+    </div>
+
+    <table class="striped" align="left">
+        <thead>
+        <tr>
+            <th>Cargo</th>
+            <th>Tipo Vaga</th>
+            <th>Turno</th>
+            <th>Area Atuacao</th>
+            <th>Empresa</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vacancy in vacancies %}
+            <tr>
+                <td>{{vacancy.cargo.title}}</td>
+                <td>{{vacancy.tipo_vaga.title}}</td>
+                <td>{{vacancy.turno.title}}</td>
+                <td>{{vacancy.area_atuacao}}</td>
+                <td>{{vacancy.empresa_vaga.nome.upper}}</td>
+                <td>{{vacancy.status.upper}}</td>
+            </tr>
+        {% endfor %}
+                                                                                            </tbody>
+    </table>
+</div>

@@ -7,6 +7,7 @@ urlpatterns = [
     url('^list_vacancies/$', views.list_vacancies, name="list_vacancies"),
     url('^register_company/$', views.register_company, name="register_company"),
     url('^register_vacancy/$', views.register_vacancy, name="register_vacancy"),
-    url('^register_area/$', views.register_area, name="register_area"), #alterar classe
+    url('^register_area/$', views.register_area, name="register_area"),
+    url('^list_area/$', views.list_area, name="list_area"),
 
 ]

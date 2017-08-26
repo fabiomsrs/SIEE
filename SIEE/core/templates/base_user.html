@@ -12,7 +12,7 @@
 <body>
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">SIEE</a>
+        <a id="logo-container" href="{% url 'institution_home' %}" class="brand-logo">SIE-E</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{% url 'institution_home' %}">Pagina Inicial</a></li>
             <li><a href="{% url 'logout_usuario' %}">Encerrar Sessão</a></li>
@@ -35,10 +35,10 @@
         <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
     </div></li>
 {#    <li><a href="{% url 'institution_home' %}"><i class="material-icons">home</i>Pagina Inicial</a></li>#}
-    <li><a href="#"><i class="material-icons">chrome_reader_mode</i>Area de Atuação</a></li>
-    <li><a href="#"><i class="material-icons">layers</i>Documentos de Estagio</a></li>
+    <li><a href="{% url 'list_area' %}"><i class="material-icons">chrome_reader_mode</i>Area de Atuação</a></li>
+{#    <li><a href="#"><i class="material-icons">layers</i>Documentos de Estagio</a></li>#}
     <li><a href="{% url 'list_companies' %}"><i class="material-icons">description</i>Empresas</a></li>
-    <li><a href="#"><i class="material-icons">event_note</i>Registro de Alunos</a></li>
+    <li><a href="{% url 'student_registration' %}"><i class="material-icons">event_note</i>Registro de Alunos</a></li>
     <li><a href="{% url 'data_reports' %}"><i class="material-icons">insert_drive_file</i>Relatorios do Sistema</a></li>
     <li><a href="{% url 'list_vacancies' %}"><i class="material-icons">assignment</i>Vagas Recentes</a></li>
 </ul>

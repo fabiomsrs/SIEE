@@ -18,6 +18,8 @@ from aluno.forms import RegisterMyCurriculum
 
 from core.models import Usuario
 
+from vaga.models import Vaga
+
 User = get_user_model()
 
 # Create your views here.
@@ -110,6 +112,29 @@ class GeneratePdfReportsUser(View):
         html = template.render(context)
 
         pdf = render_to_pdf('report/report_user.html', context)
+        if pdf:
+            reponse = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %("12341231")
+            content = "inline; filename='%s'" % (filename)
+
+            download = request.GET.get("download")
+            if download:
+                content = "attachement; filename='%s'" % (filename)
+            reponse['Content-Disposition'] = content
+            return reponse
+        return  HttpResponse("Not Found")
+
+
+class GeneratePdfReportsVacancy(View):
+
+    def get(self, request, *args, **kwargs):
+        template = get_template('report/report_vacancy_disclosed.html')
+        context = {
+            'vacancies' : Vaga.objects.all()
+        }
+        html = template.render(context)
+
+        pdf = render_to_pdf('report/report_vacancy_disclosed.html', context)
         if pdf:
             reponse = HttpResponse(pdf, content_type='application/pdf')
             filename = "Invoice_%s.pdf" %("12341231")

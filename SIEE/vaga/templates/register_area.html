@@ -1,19 +1,27 @@
 {% extends "base_user.html" %}
 {% block base_institution %}
 
-<form class="form-horizontal" method="POST">
-    {% csrf_token %}
-    <div class="container" align="center">
-        <div class="card"><div class="card-content">
-            <h5>Area de Atuação</h5>
-            <fieldset>
-                {{ form_register_course }}
-                <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
-            </fieldset>
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container" align="center">
+                <form class="form-horizontal" method="POST">
+                    {% csrf_token %}
+                    <div class="card"><div class="card-content">
+                        <h5>Area de Atuação</h5>
+                        <fieldset>
+                            {{ form_register_course }}
+                            <button type="submit" name="_submit" class="btn">Registrar</button><br><br>
+                        </fieldset>
+                    </div>
+                    </div>
+                    <br>
+                </form>
+            </div>
         </div>
-        </div>
+        <div class="parallax"><img src="/static/img/background1.jpg" alt="Unsplashed background img 1"></div>
     </div>
-    <br>
-</form>
+
+
+
 
 {% endblock %}

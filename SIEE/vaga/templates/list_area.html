@@ -1,0 +1,36 @@
+{% extends "base_user.html" %}
+{% block base_institution %}
+    <div id="index-banner" class="parallax-container2">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <h4>Vagas Divulgadas Recentemente</h4>
+                        <br>
+                        <table class="striped">
+                            <thead>
+                            <tr>
+                                <th>Area Atuação</th>
+                                <th>Curso</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for area in areas %}
+                                <tr>
+                                    <td>{{area.nome}}</td>
+                                    <td>{{area.curso}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="container" align="center">
+                        <a href="{% url 'register_area' %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="/static/img/background5.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+{% endblock %}
